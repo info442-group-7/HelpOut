@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "my-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,7 +9,9 @@
     "antd": "^4.2.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "moment": "latest",
+    "react-router-dom": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
