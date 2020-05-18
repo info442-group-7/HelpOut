@@ -117,37 +117,22 @@ class YourRequestsCardView extends Component {
                         here...............................................
       </p>
                         <p>Requester</p>
-                        <p><div onClick={this.handleClick.bind(this)}>
-                            {this.state.succeed ? succeed : notsucceed}
-                        </div></p>
+                        <div style={{display:"flex", justifyContent: "center"}}><Button type="primary" style={{
+                            background: 'linear-gradient(45deg, #0059ff 30%, #0088ff 90%)',
+                            border: 0,
+                            borderRadius: 3,
+                            boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+                            color: 'white',
+                            height: 48,
+                            padding: '0 40px',
+                            marginBottom: '25px',
+                            margin: 4,
+                        }}
+                        > Accept </Button></div>
                     </Card>
 
 
-                    <Container maxWidth="xs">
-                        <Cards className={useStyles.root} variant="outlined">
-                            <CardContent>
 
-
-                            </CardContent>
-                            <CardActions>
-                                <Grid
-                                    container
-                                    direction="row"
-                                    justify="space-between"
-                                    alignItems="center"
-                                >
-                                    <div onClick={this.handleClick.bind(this)}>
-                                        {this.state.succeed ? succeed : notsucceed}
-                                    </div>
-
-
-                                </Grid>
-
-                            </CardActions>
-
-                            {this.state.succeed ? null : <Results />}
-                        </Cards>
-                    </Container>
                 </div>
             );
         }
@@ -159,6 +144,33 @@ class YourRequestsCardView extends Component {
 }
 
 export default YourRequestsCardView;
+
+
+//<Container maxWidth="xs">
+//    <Cards className={useStyles.root} variant="outlined">
+//        <CardContent>
+//
+//
+//        </CardContent>
+//        <CardActions>
+//            <Grid
+//                container
+//                direction="row"
+//                justify="space-between"
+//                alignItems="center"
+//            >
+//                <div onClick={this.handleClick.bind(this)}>
+//                    {this.state.succeed ? succeed : notsucceed}
+ //               </div>
+//
+
+  //          </Grid>
+
+    //    </CardActions>
+
+      //  {this.state.succeed ? null : <Results />}
+  //  </Cards>
+//</Container>
 
 
 

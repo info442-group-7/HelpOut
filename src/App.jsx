@@ -5,6 +5,8 @@ import { Layout, Menu } from 'antd';
 
 ///import Dashboard from './containers/Dashboard/Dashboard';
 import YourRequests from './components/YourRequests/YourRequests';
+import Test from './components/YourRequests/test';
+
 import DashboardLayout from './components/DashboardLayout/DashboardLayout';
 import HomeView from './components/HomeView';
 
@@ -30,12 +32,14 @@ const App = () => {
                 <Menu.Item key="2">Tasks</Menu.Item>
                 <Menu.Item key="3"><span>Requests</span>
                 <Link to="/YourRequests" /></Menu.Item>
-                <Menu.Item key="4">Additional Resources</Menu.Item>
+                <Menu.Item key="4">Additional Resources
+                <Link to="/test" /></Menu.Item>
             </Menu>
             </Header>
             <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
               <Route exact path="/" component={HomeView} />
               <Route path="/YourRequests" component={YourRequests} />
+              <Route path="/test" component={Test} />
             </Content>
 
           </Layout>

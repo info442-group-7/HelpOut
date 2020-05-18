@@ -8,4 +8,8 @@ const HomeView = (props) => {
         <div>
             <h1 style={{ color: 'blue', fontSize: '50px', textAlign: "center"}}>Home Page ;D </h1>
         </div>
-        
+        // mountNode,
+        )
+    }
+
+    export default HomeView;
