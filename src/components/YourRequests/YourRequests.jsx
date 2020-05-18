@@ -5,11 +5,10 @@ import { makeStyles } from '@material-ui/core/styles';
 //import Button from '@material-ui/core/Button';
 import { styled } from '@material-ui/core/styles';
 
+import { Row, Col } from 'antd';
+import { Card } from 'antd';
+
 import { Button } from 'antd';
-
-
-
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,7 +62,6 @@ class App extends React.Component {
   }
 
   render() {
-    const greeting = 'Welcome to React';
     console.log(this.state.counter)
     console.log(this.state.total);
     let testing = this.state.dog;
@@ -71,24 +69,22 @@ class App extends React.Component {
     return (
 
       <div>
-        <div>
 
-        </div>
         <h1>Tasks</h1>
 
-        <Grid container className={useStyles.root} spacing={2}>
-          <Grid item xs={12}>
-            <Grid container justify="center" spacing={2}>
-              {this.state.total.map((value) => (
-                <Grid key={value} item>
-                  <YourRequestsCardView />
-                </Grid>
-              ))}
-            </Grid>
-          </Grid>
 
-        </Grid>
-<div style={{display:"flex", justifyContent:"center", padding: "2%"}}>
+        <div style={{ display: "flex", justifyContent: "space-around" }}>
+
+          <Row gutter={16} style={{ display: "flex", justifyContent: "space-around" }}>
+            {this.state.total.map((value) =>
+              <Col classname="gutter-row" key={value} style={{ display: "flex", justifyContent: "space-around" }} ><YourRequestsCardView /></Col>)}
+        <br></br>  </Row>
+        </div>
+
+
+
+
+        <div style={{ display: "flex", justifyContent: "center", padding: "2%" }}>
           <Button type="primary" onClick={this.onClick} style={{
             backgroundColor: "#dedede",
             borderColor: "black",
@@ -101,13 +97,13 @@ class App extends React.Component {
             verticalAlign: "middle",
           }}
             ghost> MORE </Button>
-            <br></br>
-   
+          <br></br>
 
-</div>
+
+        </div>
 
         <Grid>
-        
+
         </Grid>
         <div style={{ float: "left", clear: "both" }}
           ref={(el) => { this.messagesEnd = el; }}>
@@ -142,3 +138,22 @@ export default App;
 //    total: [...prevState.total, first + 3],
 //  }))
 //}
+
+
+
+
+
+/*
+<Grid container className={useStyles.root} spacing={2}>
+<Grid item xs={12}>
+  <Grid container justify="center" spacing={2}>
+    {this.state.total.map((value) => (
+      <Grid key={value} item>
+        <YourRequestsCardView />
+      </Grid>
+    ))}
+  </Grid>
+</Grid>
+
+</Grid>
+*/
