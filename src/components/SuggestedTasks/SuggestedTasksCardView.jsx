@@ -112,13 +112,15 @@ class SuggestedTasksCardView extends Component {
         if (this.state.clicked) {
             return (
                 <div>
-                    <Card className="cardStyle" title="Get groceries for gramma" style={{ width: "37vh", height:"35vh",  boxShadow:"0 8px 6px -6px #aaaaaa", margin:"1vh"}}>
-                        <p>A description of the task goes here ................
-                        .....................................here..............
-                        here...............................................
+                    <Card className="cardStyle" style={{ width: "37vh", height: "35vh", boxShadow: "0 8px 6px -6px #aaaaaa", margin: "1vh" }}>
+                        <h5 className="cardTitle">Getting groceries for gramma</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                            incididunt ut labore 
+                          
+                           
       </p>
                         <p>Requester</p>
-                        <div style={{display:"flex", justifyContent: "center"}}><Button type="primary" style={{
+                        <div style={{ display: "flex", justifyContent: "center" }}><Button type="primary" style={{
                             background: 'linear-gradient(45deg, #0059ff 30%, #0088ff 90%)',
                             border: 0,
                             borderRadius: 3,

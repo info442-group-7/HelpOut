@@ -40,7 +40,7 @@ class SuggestedTasksView extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  scrollToBottom = () => {
+/*  scrollToBottom = () => {
     this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   }
 
@@ -52,7 +52,7 @@ class SuggestedTasksView extends React.Component {
     this.scrollToBottom();
   }
 
-
+*/
 
   onClick() {
     this.setState({
@@ -77,9 +77,9 @@ class SuggestedTasksView extends React.Component {
 
 
      
-    <Row gutter={48}style={{display:"flex", justifyContent:"center",marginLeft:"6vh", marginBottom:"2vh", marginRight: "6vh"}}>
+    <Row gutter={{sm: 2, lg: 48}}  justify="center">
       {this.state.total.map((value) =>
-      <Col className="gutter-row" span={5}key={value}style={{marginBottom:"1vh", marginLeft: "1vh", marginRight:"1vh"}}>
+      <Col className="gutter-row" flex="" span={5}key={value}>
 
         <SuggestedTasksCardView />
       </Col>)}
@@ -110,9 +110,7 @@ class SuggestedTasksView extends React.Component {
         <Grid>
 
         </Grid>
-        <div style={{ float: "left", clear: "both" }}
-          ref={(el) => { this.messagesEnd = el; }}>
-        </div>
+        
       </div >
     );
   }
@@ -121,6 +119,11 @@ const Greeting = props => <h1>{props.greeting}</h1>;
 
 
 export default SuggestedTasksView;
+/*
+<div style={{ float: "left", clear: "both" }}
+          ref={(el) => { this.messagesEnd = el; }}>
+        </div>
+        */
 
 //     <MoreButton variant="outlined" size="large" onClick={this.onClick}>More</MoreButton>
 
