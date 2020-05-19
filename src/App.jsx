@@ -6,9 +6,12 @@ import { Layout, Menu } from 'antd';
 ///import Dashboard from './containers/Dashboard/Dashboard';
 import YourRequests from './components/YourRequests/YourRequests';
 import Test from './components/YourRequests/test';
+import logo from './logo.png';
+import styles from './App.css'
 
 import DashboardLayout from './components/DashboardLayout/DashboardLayout';
 import HomeView from './components/HomeView';
+
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -20,34 +23,44 @@ const App = () => {
     return true
   }
   return (
-      <Router>
-        <Layout style={{ minHeight: '100vh' }}>
+    <Router>
+      <Layout style={{ minHeight: '100vh' }}>
 
-          <Layout>
-          <Header>
-            <div className="logo" />
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-                <Menu.Item key="1"><span>Home</span>
-                <Link to="/" /></Menu.Item>
-                <Menu.Item key="2">Tasks</Menu.Item>
-                <Menu.Item key="3"><span>Requests</span>
-                <Link to="/YourRequests" /></Menu.Item>
-                <Menu.Item key="4">Additional Resources
+        <Layout>
+
+
+
+
+          <Menu theme="light" mode="horizontal" defaultSelectedKeys={['2']}>
+
+            <Menu.Item key="1"><span> <Menu.Item key="1"><span><img src={logo} alt="Smiley face" height="50" /></span><Link to="/" />
+            </Menu.Item></span>
+            </Menu.Item>
+
+            <Menu.Item key="2">Tasks</Menu.Item>
+            <Menu.Item key="3"><span>Requests</span>
+              <Link to="/YourRequests" /></Menu.Item>
+            <Menu.Item key="4">Additional Resources
                 <Link to="/test" /></Menu.Item>
-            </Menu>
-            </Header>
-            <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
-              <Route exact path="/" component={HomeView} />
-              <Route path="/YourRequests" component={YourRequests} />
-              <Route path="/test" component={Test} />
-            </Content>
+            
+              <Menu.Item key="5">Welcome Back!
+                </Menu.Item>
+            
+          </Menu>
+          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
 
-          </Layout>
+
+            <Route exact path="/" component={HomeView} />
+            <Route path="/YourRequests" component={YourRequests} />
+            <Route path="/test" component={Test} />
+          </Content>
 
         </Layout>
-      </Router>
-    );
-  }
+
+      </Layout>
+    </Router>
+  );
+}
 
 
 //import { BrowserRouter, Route, Switch, Redirect, useHistory } from "react-router-dom";
@@ -58,20 +71,20 @@ const App = () => {
 //import YourRequests from './components/YourRequests/YourRequests';
 
 //const App = () => {
-  //const isAuthenticated = () => {
-    // Perform authentication logic once user handling on backend is set up
-    //return true
- // }
-  //return (
-   // <BrowserRouter>
-   //   <Switch>
-     //   <Route exact path="/home" component={DashboardLayout} />
-       // <Route exact path="/yourrequests" component={YourRequests} />
+//const isAuthenticated = () => {
+// Perform authentication logic once user handling on backend is set up
+//return true
+// }
+//return (
+// <BrowserRouter>
+//   <Switch>
+//   <Route exact path="/home" component={DashboardLayout} />
+// <Route exact path="/yourrequests" component={YourRequests} />
 
-     // </Switch>
-   // </BrowserRouter>
-  //)
-  //}
+// </Switch>
+// </BrowserRouter>
+//)
+//}
 
 // const AuthedRoute = ({ component: Component, ...rest }) => (
 //   <Route
