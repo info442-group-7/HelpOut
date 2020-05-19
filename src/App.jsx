@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Layout, Menu } from 'antd';
 
 ///import Dashboard from './containers/Dashboard/Dashboard';
-import YourRequests from './components/YourRequests/YourRequests';
-import Test from './components/YourRequests/test';
+import YourRequests from './components/SuggestedTasks/SuggestedTasks';
+import Test from './components/SuggestedTasks/test';
 import logo from './logo.png';
 import styles from './App.css'
 
@@ -16,6 +16,7 @@ import HomeView from './components/HomeView';
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
+
 
 const App = () => {
   const isAuthenticated = () => {
@@ -31,27 +32,28 @@ const App = () => {
 
 
 
-          <Menu theme="light" mode="horizontal" defaultSelectedKeys={['2']}>
+          <Menu theme="light" mode="horizontal" style={{boxShadow: "0px 0px 9px 3px rgba(41,41,41,.25)", height:"10vh", paddingTop:"1.6vh", alignItems:"center"}}defaultSelectedKeys={['2']}>
 
-            <Menu.Item key="1"><span> <Menu.Item key="1"><span><img src={logo} alt="Smiley face" height="50" /></span><Link to="/" />
+            <Menu.Item key="1" style={{alignItems:"center"}}><span> <Menu.Item key="1"><span><img src={logo} alt="Smiley face" height="50" /></span><Link to="/" />
             </Menu.Item></span>
             </Menu.Item>
 
-            <Menu.Item key="2">Tasks</Menu.Item>
+            <Menu.Item key="2">Tasks<Link to="/SuggestedTasks" /></Menu.Item>
+            
             <Menu.Item key="3"><span>Requests</span>
-              <Link to="/YourRequests" /></Menu.Item>
+              </Menu.Item>
             <Menu.Item key="4">Additional Resources
                 <Link to="/test" /></Menu.Item>
             
-              <Menu.Item key="5">Welcome Back!
+              <Menu.Item key="5" style={{float:"right"}}>Welcome Back!
                 </Menu.Item>
             
           </Menu>
-          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
+          <Content style={{ margin: '24px 16px', padding: 24, background: '#F1F4F6', minHeight: 280 }}>
 
 
             <Route exact path="/" component={HomeView} />
-            <Route path="/YourRequests" component={YourRequests} />
+            <Route path="/SuggestedTasks" component={YourRequests} />
             <Route path="/test" component={Test} />
           </Content>
 
