@@ -15,8 +15,51 @@
   }
 }
 
+.welcome {
+  margin-left: auto;
+}
+
+.cardHeader {
+  font-size: 4vmin;
+  font-weight: bolder;
+  font-stretch: condensed;
+  margin-left: 9%;
+}
+
+cardStyle  { 
+  width: "700px";
+  height: "192px";
+  border-radius: "16px";
+  margin-right: "24px";
+  box-shadow:  3px 5px 6px black;
+}
+
+.cardTitle {
+  font-size: 3vmin;
+  font-family: Calibri;
+  font-weight: bold;
+  font-stretch: ultra-condensed;
+}
+
+.cardDescription {
+  font-size: 1.5 vmin;
+  color: black;
+}
+
+.cardRequester {
+  font-size: 1.5 vmin;
+  color: black;
+}
+
+.cardRequested {
+  color: #61dafb;
+  font-weight: bold;
+  font-size: 1.5 vmin;
+}
+
+
 .App-header {
-  background-color: #282c34;
+  background-color: #235dd3;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
