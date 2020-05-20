@@ -19,6 +19,13 @@
   margin-left: auto;
 }
 
+.cardHeader {
+  font-size: 4vmin;
+  font-weight: bolder;
+  font-stretch: condensed;
+  margin-left: 9%;
+}
+
 cardStyle  { 
   width: "700px";
   height: "192px";
@@ -28,12 +35,27 @@ cardStyle  {
 }
 
 .cardTitle {
-  font-size: 30px;
+  font-size: 3vmin;
   font-family: Calibri;
   font-weight: bold;
   font-stretch: ultra-condensed;
 }
 
+.cardDescription {
+  font-size: 1.5 vmin;
+  color: black;
+}
+
+.cardRequester {
+  font-size: 1.5 vmin;
+  color: black;
+}
+
+.cardRequested {
+  color: #61dafb;
+  font-weight: bold;
+  font-size: 1.5 vmin;
+}
 
 
 .App-header {

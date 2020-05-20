@@ -71,7 +71,7 @@ class SuggestedTasksView extends React.Component {
     return (
 
       <div >
-        <div style={{marginLeft:"22vh"}}><h1>Tasks in your area</h1></div>
+        <div className = "headerDiv"><h1 className = "cardHeader">Tasks in your area</h1></div>
 
       
 
