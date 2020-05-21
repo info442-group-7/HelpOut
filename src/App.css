@@ -55,7 +55,10 @@ cardStyle  {
   color: #61dafb;
   font-weight: bold;
   font-size: 1.5 vmin;
+  position: absolute;
+  bottom: 0;
 }
+
 
 
 .App-header {

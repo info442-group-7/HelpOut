@@ -5,15 +5,18 @@ import { Layout, Menu, Dropdown } from 'antd';
 ///import Dashboard from './containers/Dashboard/Dashboard';
 import SuggestedTasks from './components/SuggestedTasks/SuggestedTasks';
 import ClaimedTasks from './components/ClaimedTasks/ClaimedTasksView';
+
+import MyRequests from './components/MyRequests/MyRequestsView';
 import Test from './components/SuggestedTasks/test';
 import logo from './logo.png';
 import styles from './App.css'
 import DashboardLayout from './components/DashboardLayout/DashboardLayout';
 import HomeView from './components/HomeView';
 import { DownOutlined } from '@ant-design/icons';
-
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
+
+
 
 const menuTasks = (
   <Menu>
@@ -45,7 +48,7 @@ const App = () => {
               </a>
             </Dropdown>
             </Menu.Item>
-            <Menu.Item key="3"><span>Requests</span>
+            <Menu.Item key="3"><span>Requests</span><Link to="/MyRequests" />
             </Menu.Item>
             <Menu.Item key="4">Additional Resources
                 <Link to="/test" /></Menu.Item>
@@ -57,6 +60,7 @@ const App = () => {
             <Route path="/SuggestedTasks" component={SuggestedTasks} />
             <Route path="/ClaimedTasks" component={ClaimedTasks} />
             <Route path="/test" component={Test} />
+            <Route path="/MyRequests" component={MyRequests} />
           </Content>
         </Layout>
       </Layout>

@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Cards from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
 import { styled } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-
 import { Card } from 'antd';
-import { Typography } from 'antd';
 import s from '../../App.css'
-import { white } from 'material-ui/styles/colors';
-const { Title } = Typography;
 
 const MyButton = styled(Button)({
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     color: 'white',
     padding: '.4vmin 3vmin',
     size: '5vmin',
-    fontSize:'1.4vmin'
+    fontSize: '1.4vmin'
 });
 
 const DoneButton = styled(Button)({
@@ -28,8 +19,7 @@ const DoneButton = styled(Button)({
     padding: '.5vmin 3vmin',
     marginTop: '1vmin',
     size: '5vmin',
-    fontSize:'1.4vmin'
-
+    fontSize: '1.4vmin'
 });
 
 const MoreButton = styled(Button)({
@@ -37,9 +27,7 @@ const MoreButton = styled(Button)({
     color: 'white',
     padding: '.4vmin 4vmin',
     size: '5vmin',
-    fontSize:'1.4vmin'
-
-
+    fontSize: '1.4vmin'
 });
 
 class ClaimedTasksCardView extends Component {
@@ -75,13 +63,9 @@ class ClaimedTasksCardView extends Component {
             <div>(253) 310-3409<br></br></div>
         )
         const notsucceed = (
-            <div style={{display:'flex', justifyContent: 'space-around'}}>
-                <MoreButton size="small">
-                    More ...
-        </MoreButton>
-                <MyButton size="small" onClick={this.onClick} >
-                    Give up ...
-        </MyButton>
+            <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+                <MoreButton size="small"> More ... </MoreButton>
+                <MyButton size="small" onClick={this.onClick} >Give up ...</MyButton>
             </div>
         )
 
@@ -93,13 +77,10 @@ class ClaimedTasksCardView extends Component {
                         <p cclassName="cardDescription"><br />Lorem ipsum dolor sit amet, consectetur adipis0ing elit, sed do eiusmod tempor
                             incididunt ut labore </p>
                         <p className="cardRequester">Requester's name</p>
+                        <div className = "buttons"> <div onClick={this.handleClick.bind(this)}> {this.state.succeed ? succeed : notsucceed} </div>
+                        {this.state.succeed ? null : <Results />}</div>
                         <p className="cardRequested">Accepted 10 days ago</p>
-                        <div>
-                        <div onClick={this.handleClick.bind(this)}>
-                    {this.state.succeed ? succeed : notsucceed}
-                </div>
-                        </div>
-                        {this.state.succeed ? null : <Results />}
+                       
                     </Card>
                 </div>
             );
