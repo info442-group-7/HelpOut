@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Layout, Menu, Dropdown } from 'antd';
 ///import Dashboard from './containers/Dashboard/Dashboard';
-import YourRequests from './components/SuggestedTasks/SuggestedTasks';
+import SuggestedTasks from './components/SuggestedTasks/SuggestedTasks';
+import ClaimedTasks from './components/ClaimedTasks/ClaimedTasksView';
 import Test from './components/SuggestedTasks/test';
 import logo from './logo.png';
 import styles from './App.css'
@@ -14,17 +15,13 @@ import { DownOutlined } from '@ant-design/icons';
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
-const menu = (
+const menuTasks = (
   <Menu>
     <Menu.Item>
-      My claimed  tasks
+    <a rel="noopener noreferrer" href="/ClaimedTasks"> My claimed  tasks </a>
     </Menu.Item>
-    <Menu.Item>
-      <a rel="noopener noreferrer" href="/SuggestedTasks">
-        Find new tasks
-      </a>
+    <Menu.Item> <a rel="noopener noreferrer" href="/SuggestedTasks"> Find new tasks </a>
     </Menu.Item>
-
   </Menu>
 );
 
@@ -42,7 +39,7 @@ const App = () => {
             <Menu.Item key="1" style={{ alignItems: "center" }}><span> <Menu.Item key="1"><span><img src={logo} alt="Smiley face" height="50" /></span><Link to="/" />
             </Menu.Item></span>
             </Menu.Item>
-            <Menu.Item key="2"><Dropdown overlay={menu}>
+            <Menu.Item key="2"><Dropdown overlay={menuTasks}>
               <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
                 Tasks <DownOutlined />
               </a>
@@ -57,7 +54,8 @@ const App = () => {
           </Menu>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#F1F4F6', minHeight: 280 }}>
             <Route exact path="/" component={HomeView} />
-            <Route path="/SuggestedTasks" component={YourRequests} />
+            <Route path="/SuggestedTasks" component={SuggestedTasks} />
+            <Route path="/ClaimedTasks" component={ClaimedTasks} />
             <Route path="/test" component={Test} />
           </Content>
         </Layout>
