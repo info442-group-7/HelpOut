@@ -13,6 +13,7 @@ import styles from './App.css'
 import DashboardLayout from './components/DashboardLayout/DashboardLayout';
 import HomeView from './components/HomeView';
 import { DownOutlined } from '@ant-design/icons';
+import HomePageView from './components/HomePageView';
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
@@ -61,6 +62,8 @@ const App = () => {
             <Route path="/ClaimedTasks" component={ClaimedTasks} />
             <Route path="/test" component={Test} />
             <Route path="/MyRequests" component={MyRequests} />
+            <Route path="/MyRequests" component={MyRequests} />
+            <Route path="/HomePageView" component={HomePageView} />
           </Content>
         </Layout>
       </Layout>

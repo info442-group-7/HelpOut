@@ -15,16 +15,28 @@
   }
 }
 
-.bar-button {
-  margin-left:'2vmin';
-  font-size:'3vmin'; 
-  margin-top:'4vmin';
-  padding-bottom: '6vmin';
-  padding-top:'1';
-  size:'large';
-  padding-left:'6vmin';
-  padding-right: '8vmin';
-  text-align:'center';
+.App-header {
+  background-color: #235dd3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .welcome {
@@ -71,32 +83,31 @@ cardStyle  {
   bottom: 0;
 }
 
-
-
-.App-header {
-  background-color: #235dd3;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .headerDiv {
   margin-left: 2vmin;
+}
+
+.helpOthers {
+  margin-left: 10vmin;
+}
+.homePageBody {
+  display: 'flex';
+  flex-direction: 'column'
+}
+.homePageButtons {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.homePageRequestButtons {
+  display: flex;
+  flex-direction: row;
+}
+
+.options {
+  margin-top: 4vmin;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
 }
