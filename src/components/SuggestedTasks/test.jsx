@@ -66,6 +66,8 @@ class Test extends React.Component {
         this.carousel.prev();
     }
 
+    
+
     render() {
         const props = {
             dots: true,
@@ -74,6 +76,11 @@ class Test extends React.Component {
             slidesToShow: 1,
             slidesToScroll: 1
         };
+        function remove(el) {
+            let element = el;
+            element.remove();
+            
+        }
         let start = 0;
         let end = 4;
         let fruitsize = this.state.fruits.length/4;
@@ -100,8 +107,8 @@ class Test extends React.Component {
                         <p className="cardRequested">Made 10 days ago</p>
                         <div className="buttons" ><div style={{ display: 'flex', justifyContent: 'space-around' }}>
                 <MoreButton size="small" a rel="noopener noreferrer" href="/"> Edit </MoreButton>
-                        <MyButton size="small" onClick={this.onClick} >Delete</MyButton>
-            </div> </div> {value}
+                        <MyButton size="small" onClick={console.log("not working")} >Delete</MyButton>
+            </div> </div> {value} 
                     </Card >
                                                     </Col>)}
                                             </Row>
@@ -125,6 +132,8 @@ class Test extends React.Component {
 
 <Button size="large" icon={<RightOutlined />}  onClick={this.next}></Button>
                                 </div>
+                                <div id="i" onClick="remove(this)">Sample</div>
+
             </div>
         );
     }
