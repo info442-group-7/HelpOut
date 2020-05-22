@@ -36,7 +36,7 @@ class ClaimedTasksView extends React.Component {
 
   constructor() {
     super()
-    this.state = { dog: "fido", counter: 5, total: [0, 1, 2, 3, 4, 5, 6, 7] };
+    this.state = { dog: "fido", counter: 5, total: [0, 1, 2, 3] };
     this.onClick = this.onClick.bind(this);
   }
 
@@ -81,7 +81,18 @@ class ClaimedTasksView extends React.Component {
       </Col>)}
     </Row>
 
-
+    <div style={{display:'flex'}}>
+                <Button className="bar-button" type="primary" a rel="noopener noreferrer" href="/SuggestedTasks" style={{marginLeft:'2vmin', 
+                        fontSize:'3vmin',
+                        marginLeft:'18.5vmin', 
+                        marginTop:'4.2vmin', 
+                        paddingBottom: '5.2vmin', 
+                        paddingTop:'1.4vmin', 
+                        size:'large', 
+                        paddingLeft:'6vmin', 
+                        paddingRight: '8vmin', 
+                        textAlign:'center'}} >Find more tasks </Button>
+                        </div>
 
 
         </div>
