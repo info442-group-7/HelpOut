@@ -83,16 +83,21 @@ cardStyle  {
   bottom: 0;
 }
 
+.greeting {
+  font-size: 4vmin;
+}
+
 .headerDiv {
   margin-left: 2vmin;
 }
 
 .helpOthers {
-  margin-left: 10vmin;
+  margin-left: 20vmin;
 }
-.homePageBody {
+.homepageBody {
   display: 'flex';
-  flex-direction: 'column'
+  flex-direction: 'column';
+  margin-left: 18vmin;
 }
 .homePageButtons {
   display: flex;
@@ -100,9 +105,19 @@ cardStyle  {
 
 }
 
+.homePageHeader {
+  font-size: 7vmin;
+  margin-bottom: 6vmin;
+ }
+
 .homePageRequestButtons {
   display: flex;
   flex-direction: row;
+}
+
+.homePageSubH {
+  font-size: 4vmin;
+  margin-top: 7vmin;
 }
 
 .options {

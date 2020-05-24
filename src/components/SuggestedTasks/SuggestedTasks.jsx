@@ -110,6 +110,7 @@ class SuggestedTasksView extends React.Component {
         <Grid>
 
         </Grid>
+        <p>My zip code is: </p>
         <div style={{ float: "left", clear: "both" }}
           ref={(el) => { this.messagesEnd = el; }}>
         </div>

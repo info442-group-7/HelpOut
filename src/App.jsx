@@ -62,8 +62,8 @@ const App = () => {
             <Route path="/ClaimedTasks" component={ClaimedTasks} />
             <Route path="/test" component={Test} />
             <Route path="/MyRequests" component={MyRequests} />
-            <Route path="/MyRequests" component={MyRequests} />
             <Route path="/HomePageView" component={HomePageView} />
+
           </Content>
         </Layout>
       </Layout>
