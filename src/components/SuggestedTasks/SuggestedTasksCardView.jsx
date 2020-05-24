@@ -112,31 +112,23 @@ class SuggestedTasksCardView extends Component {
         if (this.state.clicked) {
             return (
                 <div>
-                    <Card className="cardStyle" style={{ width: "36vmin", height: "34vh", boxShadow: "0 8px 6px -6px #aaaaaa", margin: "5%", lineHeight:"150%"}}>
+                    <Card className="cardStyle" style={{ width: "36vmin", height: "34vh", boxShadow: "0 8px 6px -6px #aaaaaa", margin: "5%", lineHeight: "2vmin" }}>
                         <h5 className="cardTitle">Getting groceries for gramma</h5>
-                        <p cclassName="cardDescription"><br/>Lorem ipsum dolor sit amet, consectetur adipis0ing elit, sed do eiusmod tempor 
-                            incididunt ut labore 
-                          
-                           
-      </p>
+                        <p cclassName="cardDescription"><br />Lorem ipsum dolor sit amet, consectetur adipis0ing elit, sed do eiusmod tempor
+                            incididunt ut labore </p>
                         <p className="cardRequester">Requester's name</p>
                         <p className="cardRequested">Requested 10 days ago</p>
                         <div style={{ display: "flex", justifyContent: "center" }}><Button type="primary" style={{
                             background: 'linear-gradient(45deg, #0059ff 30%, #0088ff 90%)',
-                            border: 0,
-                            borderRadius: 3,
                             boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
                             color: 'white',
-                            height: 48,
-                            padding: '0 40px',
-                            marginBottom: '25px',
-                            margin: 4,
+                            height: '5vmin',
+                            padding: '0vmin 4vmin',
+                            marginBottom: '2vmin',
+                            margin: '2vmin',
                         }}
                         > Accept </Button></div>
                     </Card>
-
-
-
                 </div>
             );
         }
@@ -144,7 +136,6 @@ class SuggestedTasksCardView extends Component {
             return null;
         }
     }
-
 }
 
 export default SuggestedTasksCardView;

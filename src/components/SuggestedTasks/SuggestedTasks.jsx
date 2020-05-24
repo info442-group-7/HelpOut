@@ -36,11 +36,11 @@ class SuggestedTasksView extends React.Component {
 
   constructor() {
     super()
-    this.state = { dog: "fido", counter: 5, total: [0, 1, 2, 3, 4, 5, 6, 7] };
+    this.state = { dog: "fido", counter: 5, total: [0, 1, 2, 3] };
     this.onClick = this.onClick.bind(this);
   }
 
-/*  scrollToBottom = () => {
+  scrollToBottom = () => {
     this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   }
 
@@ -52,12 +52,12 @@ class SuggestedTasksView extends React.Component {
     this.scrollToBottom();
   }
 
-*/
+
 
   onClick() {
     this.setState({
       counter: this.state.counter + 1,
-      total: this.state.total.concat([...new Array(5)]),
+      total: this.state.total.concat([...new Array(4)]),
 
     });
 
@@ -71,13 +71,13 @@ class SuggestedTasksView extends React.Component {
     return (
 
       <div >
-        <div className = "headerDiv"><h1 className = "cardHeader">Tasks in your area</h1></div>
+       <div className="headerDiv"><h1 className="cardHeader">My Requests</h1></div>
 
       
 
 
      
-    <Row gutter={{sm: 2, lg: 48}}  justify="center">
+    <Row gutter={48}  justify="center">
       {this.state.total.map((value) =>
       <Col className="gutter-row" flex="" span={5}key={value}>
 
@@ -90,7 +90,7 @@ class SuggestedTasksView extends React.Component {
 
 
         <div style={{ display: "flex", justifyContent: "center", padding: "2%" }}>
-          <Button type="primary"  style={{
+        <Button type="primary" onClick={this.onClick} style={{
             backgroundColor: "#dedede",
             borderColor: "black",
             color: "black",
@@ -110,7 +110,10 @@ class SuggestedTasksView extends React.Component {
         <Grid>
 
         </Grid>
-        
+        <p>My zip code is: </p>
+        <div style={{ float: "left", clear: "both" }}
+          ref={(el) => { this.messagesEnd = el; }}>
+        </div>
       </div >
     );
   }
@@ -119,11 +122,6 @@ const Greeting = props => <h1>{props.greeting}</h1>;
 
 
 export default SuggestedTasksView;
-/*
-<div style={{ float: "left", clear: "both" }}
-          ref={(el) => { this.messagesEnd = el; }}>
-        </div>
-        */
 
 //     <MoreButton variant="outlined" size="large" onClick={this.onClick}>More</MoreButton>
 
