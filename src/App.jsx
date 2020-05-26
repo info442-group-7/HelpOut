@@ -6,7 +6,7 @@ import { Layout, Menu, Dropdown } from 'antd';
 import SuggestedTasks from './components/SuggestedTasks/SuggestedTasks';
 import ClaimedTasks from './components/ClaimedTasks/ClaimedTasksView';
 import CreateNewRequestView from './components/CreateNewRequest/CreateNewRequestView';
-
+import UserLoginView from './components/UserLogin/UserLoginView';
 import MyRequests from './components/MyRequests/MyRequestsView';
 import Test from './components/SuggestedTasks/test';
 import logo from './logo.png';
@@ -65,6 +65,7 @@ const App = () => {
             <Route path="/MyRequests" component={MyRequests} />
             <Route path="/HomePageView" component={HomePageView} />
             <Route path="/CreateRequest" component={CreateNewRequestView} />
+            <Route path="/login" component={UserLoginView} />
 
           </Content>
         </Layout>
