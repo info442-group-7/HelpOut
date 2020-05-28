@@ -4,31 +4,13 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 //import Button from '@material-ui/core/Button';
 import { styled } from '@material-ui/core/styles';
+import '../../App.css'
 
 import { Row, Col } from 'antd';
 import { Card } from 'antd';
 
 import { Button } from 'antd';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    height: 140,
-    width: 100,
-  },
-  control: {
-    padding: theme.spacing(2),
-  },
-}));
-
-const MoreButton = styled(Button)({
-
-  margin: 40,
-  padding: 20.
-
-});
 
 const style = { background: '#0092ff', padding: '8px 0' };
 
@@ -36,7 +18,7 @@ class ClaimedTasksView extends React.Component {
 
   constructor() {
     super()
-    this.state = { dog: "fido", counter: 5, total: [0, 1, 2, 3] };
+    this.state = { cards: 1, dog: "fido", counter: 5, total: [0, 1, 2, 3, 4, 5] };
     this.onClick = this.onClick.bind(this);
   }
 
@@ -51,7 +33,7 @@ class ClaimedTasksView extends React.Component {
   componentDidUpdate() {
     this.scrollToBottom();
   }
-
+ <Row gutter={{sm: 2, lg: 48}}  justify="center">
 */
 
   onClick() {
@@ -63,23 +45,56 @@ class ClaimedTasksView extends React.Component {
 
   }
 
+  updateCards() {
+    this.setState({
+      cards:  this.state.cards + 1
+    });
+
+  
+    }
+  
+
+  
+
   render() {
     console.log(this.state.counter)
     console.log(this.state.total);
     let testing = this.state.dog;
 
+    const isCard = (
+      <div className="col">
+        <ClaimedTasksCardView />
+        </div>        
+    )
+
+    const breakcard = (
+      <div>
+      <div className="break">
+        </div>    
+         
+        </div>    
+    )
+
+    let cardCount = 0;
+
     return (
 
-      <div >
+      <div style={{marginLeft:'5vw', marginRight:'7vw'}} >
         <div className = "headerDiv"><h1 className = "cardHeader">Claimed Tasks</h1></div>
 
-        <Row gutter={{sm: 2, lg: 48}}  justify="center">
+       <div className="flex-grid">
       {this.state.total.map((value) =>
-      <Col className="gutter-row" flex="" span={5}key={value}>
 
+      <div>
+      
+      <div className="col">
         <ClaimedTasksCardView />
-      </Col>)}
-    </Row>
+        </div> 
+
+      </div>
+      
+      )}
+    </div>
 
     <div style={{display:'flex'}}>
                 <Button className="bar-button" type="primary" a rel="noopener noreferrer" href="/SuggestedTasks" style={{marginLeft:'2vmin', 
