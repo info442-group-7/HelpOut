@@ -13,13 +13,15 @@ var _toArray = _interopRequireDefault(require("rc-util/lib/Children/toArray"));
 
 var _responsiveObserve = _interopRequireWildcard(require("../_util/responsiveObserve"));
 
-var _warning = _interopRequireDefault(require("../_util/warning"));
+var _devWarning = _interopRequireDefault(require("../_util/devWarning"));
 
 var _configProvider = require("../config-provider");
 
 var _Row = _interopRequireDefault(require("./Row"));
 
 var _Item = _interopRequireDefault(require("./Item"));
+
+var _reactNode = require("../_util/reactNode");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -74,10 +76,10 @@ function getFilledItem(node, span, rowRestCol) {
   var clone = node;
 
   if (span === undefined || span > rowRestCol) {
-    clone = React.cloneElement(node, {
+    clone = (0, _reactNode.cloneElement)(node, {
       span: rowRestCol
     });
-    (0, _warning["default"])(span === undefined, 'Descriptions', 'Sum of column `span` in a line not match `column` of Descriptions.');
+    (0, _devWarning["default"])(span === undefined, 'Descriptions', 'Sum of column `span` in a line not match `column` of Descriptions.');
   }
 
   return clone;

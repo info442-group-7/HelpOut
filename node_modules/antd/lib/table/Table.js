@@ -47,7 +47,7 @@ var _Column = _interopRequireDefault(require("./Column"));
 
 var _ColumnGroup = _interopRequireDefault(require("./ColumnGroup"));
 
-var _warning = _interopRequireDefault(require("../_util/warning"));
+var _devWarning = _interopRequireDefault(require("../_util/devWarning"));
 
 var _useBreakpoint = _interopRequireDefault(require("../grid/hooks/useBreakpoint"));
 
@@ -311,7 +311,7 @@ function Table(props) {
 
     if (mergedData.length < total) {
       if (mergedData.length > pageSize) {
-        (0, _warning["default"])(false, 'Table', '`dataSource` length is less than `pagination.total` but large than `pagination.pageSize`. Please make sure your config correct data with async mode.');
+        (0, _devWarning["default"])(false, 'Table', '`dataSource` length is less than `pagination.total` but large than `pagination.pageSize`. Please make sure your config correct data with async mode.');
         return mergedData.slice((current - 1) * pageSize, current * pageSize);
       }
 
@@ -437,7 +437,7 @@ function Table(props) {
     direction: direction,
     expandable: mergedExpandable,
     prefixCls: prefixCls,
-    className: (0, _classnames["default"])((_classNames3 = {}, _defineProperty(_classNames3, "".concat(prefixCls, "-middle"), mergedSize === 'middle'), _defineProperty(_classNames3, "".concat(prefixCls, "-small"), mergedSize === 'small'), _defineProperty(_classNames3, "".concat(prefixCls, "-bordered"), bordered), _classNames3)),
+    className: (0, _classnames["default"])((_classNames3 = {}, _defineProperty(_classNames3, "".concat(prefixCls, "-middle"), mergedSize === 'middle'), _defineProperty(_classNames3, "".concat(prefixCls, "-small"), mergedSize === 'small'), _defineProperty(_classNames3, "".concat(prefixCls, "-bordered"), bordered), _defineProperty(_classNames3, "".concat(prefixCls, "-empty"), rawData.length === 0), _classNames3)),
     data: pageData,
     rowKey: getRowKey,
     rowClassName: internalRowClassName,

@@ -39,6 +39,19 @@
   }
 }
 
+.bar-button {
+  margin-left: '2vmin';
+  font-size: '3vmin';
+  margin-left: '18.5vmin';
+  margin-top: '4.2vmin';
+  padding-bottom: '5.2vmin';
+  padding-top: '1.4vmin';
+  size: 'large';
+  padding-left: '6vmin';
+  padding-right: '8vmin';
+  text-align: 'center';
+}
+
 .buttons {
  background-color: darkgray;
  display: flex;
@@ -72,6 +85,12 @@
 
 }
 
+.cardLineBreak {
+  background-color: gray;
+  
+  margin-bottom: 6%;
+}
+
 cardStyle  { 
   width: "700px";
   height: "192px";
@@ -83,15 +102,23 @@ cardStyle  {
 .cardTitle {
   font-family: Calibri;
   font-weight: bold;
-  font-stretch: ultra-condensed;
+  font-stretch: condensed;
+  font-size: 32px;
 }
 
 .cardDescription {
   color: black;
+  font-size: 14px;
+}
+
+.cardDesDiv {
+  height: 100px;
+  overflow: hidden;
 }
 
 .cardRequester {
   color: black;
+  font-size: 18px;
 }
 
 .cardRequested {
@@ -122,6 +149,12 @@ cardStyle  {
 }
 
 .flex-grid::after { content: "";flex: 0 0 50%;max-width: 950px;}
+
+.flex-header {
+  display: flex;
+  flex-flow: wrap;
+justify-content: start;  
+}
 
 
 

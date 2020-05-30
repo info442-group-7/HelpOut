@@ -9,7 +9,6 @@ import '../../App.css'
 import { Row, Col } from 'antd';
 import { Card } from 'antd';
 
-import { Button } from 'antd';
 
 
 const style = { background: '#0092ff', padding: '8px 0' };
@@ -21,20 +20,21 @@ class ClaimedTasksView extends React.Component {
     this.state = { cards: 1, dog: "fido", counter: 5, total: [0, 1, 2, 3, 4, 5] };
     this.onClick = this.onClick.bind(this);
   }
+  
 
-/*  scrollToBottom = () => {
-    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
-  }
-
-  componentDidMount() {
-    this.scrollToBottom();
-  }
-
-  componentDidUpdate() {
-    this.scrollToBottom();
-  }
- <Row gutter={{sm: 2, lg: 48}}  justify="center">
-*/
+  /*  scrollToBottom = () => {
+      this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    }
+  
+    componentDidMount() {
+      this.scrollToBottom();
+    }
+  
+    componentDidUpdate() {
+      this.scrollToBottom();
+    }
+   <Row gutter={{sm: 2, lg: 48}}  justify="center">
+  */
 
   onClick() {
     this.setState({
@@ -47,70 +47,35 @@ class ClaimedTasksView extends React.Component {
 
   updateCards() {
     this.setState({
-      cards:  this.state.cards + 1
+      cards: this.state.cards + 1
     });
 
-  
-    }
-  
 
-  
+  }
+
+
+
 
   render() {
     console.log(this.state.counter)
     console.log(this.state.total);
     let testing = this.state.dog;
-
-    const isCard = (
-      <div className="col">
-        <ClaimedTasksCardView />
-        </div>        
-    )
-
-    const breakcard = (
-      <div>
-      <div className="break">
-        </div>    
-         
-        </div>    
-    )
-
-    let cardCount = 0;
-
     return (
-
-      <div style={{marginLeft:'5vw', marginRight:'7vw'}} >
-        <div className = "headerDiv"><h1 className = "cardHeader">Claimed Tasks</h1></div>
-
-       <div className="flex-grid">
-      {this.state.total.map((value) =>
-
-      <div>
-      
-      <div className="col">
-        <ClaimedTasksCardView />
-        </div> 
-
-      </div>
-      
-      )}
-    </div>
-
-    <div style={{display:'flex'}}>
-                <Button className="bar-button" type="primary" a rel="noopener noreferrer" href="/SuggestedTasks" style={{marginLeft:'2vmin', 
-                        fontSize:'3vmin',
-                        marginLeft:'18.5vmin', 
-                        marginTop:'4.2vmin', 
-                        paddingBottom: '5.2vmin', 
-                        paddingTop:'1.4vmin', 
-                        size:'large', 
-                        paddingLeft:'6vmin', 
-                        paddingRight: '8vmin', 
-                        textAlign:'center'}} >Find more tasks </Button>
-                        </div>
-
-
+      <div style={{ marginLeft: '5vw', marginRight: '7vw' }} >
+        <div className="headerDiv"><h1 className="cardHeader">Claimed Tasks</h1></div>
+        <div className="flex-grid">
+          {this.state.total.map((value) =>
+            <div>
+              <div className="col">
+                <ClaimedTasksCardView />
+              </div>
+            </div>
+          )}
         </div>
+        <div style={{ display: 'flex' }}>
+          <button className="bar-button" type="primary" a rel="noopener noreferrer" href="/SuggestedTasks" >Find more tasks </button>
+        </div>
+      </div>
     );
   }
 }

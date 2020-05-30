@@ -83,6 +83,8 @@ function renderFilterItems(filters, prefixCls, filteredKeys, multiple) {
 }
 
 function FilterDropdown(props) {
+  var _a;
+
   var prefixCls = props.prefixCls,
       column = props.column,
       dropdownPrefixCls = props.dropdownPrefixCls,
@@ -101,7 +103,7 @@ function FilterDropdown(props) {
       visible = _React$useState2[0],
       setVisible = _React$useState2[1];
 
-  var filtered = !!(filterState && (filterState.filteredKeys || filterState.forceFiltered));
+  var filtered = !!(filterState && (((_a = filterState.filteredKeys) === null || _a === void 0 ? void 0 : _a.length) || filterState.forceFiltered));
 
   var triggerVisible = function triggerVisible(newVisible) {
     setVisible(newVisible);

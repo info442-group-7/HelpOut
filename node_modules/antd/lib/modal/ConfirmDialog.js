@@ -15,7 +15,7 @@ var _Modal = _interopRequireDefault(require("./Modal"));
 
 var _ActionButton = _interopRequireDefault(require("./ActionButton"));
 
-var _warning = _interopRequireDefault(require("../_util/warning"));
+var _devWarning = _interopRequireDefault(require("../_util/devWarning"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -41,7 +41,7 @@ var ConfirmDialog = function ConfirmDialog(props) {
       okButtonProps = props.okButtonProps,
       cancelText = props.cancelText,
       cancelButtonProps = props.cancelButtonProps;
-  (0, _warning["default"])(!(typeof icon === 'string' && icon.length > 2), 'Modal', "`icon` is using ReactNode instead of string naming in v4. Please check `".concat(icon, "` at https://ant.design/components/icon")); // 支持传入{ icon: null }来隐藏`Modal.confirm`默认的Icon
+  (0, _devWarning["default"])(!(typeof icon === 'string' && icon.length > 2), 'Modal', "`icon` is using ReactNode instead of string naming in v4. Please check `".concat(icon, "` at https://ant.design/components/icon")); // 支持传入{ icon: null }来隐藏`Modal.confirm`默认的Icon
 
   var okType = props.okType || 'primary';
   var prefixCls = props.prefixCls || 'ant-modal';
