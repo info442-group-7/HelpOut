@@ -1,58 +1,29 @@
 import React, { Component } from 'react';
 import SuggestedTasksCardView from "./SuggestedTasksCardView";
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-//import Button from '@material-ui/core/Button';
-import { styled } from '@material-ui/core/styles';
-
-import { Row, Col } from 'antd';
-import { Card } from 'antd';
-
+import '../../App.css'
 import { Button } from 'antd';
+import { InfoCircleTwoTone, CheckCircleTwoTone, CloseCircleTwoTone } from '@ant-design/icons';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    height: 140,
-    width: 100,
-  },
-  control: {
-    padding: theme.spacing(2),
-  },
-}));
-
-const MoreButton = styled(Button)({
-
-  margin: 40,
-  padding: 20.
-
-});
-
-const style = { background: '#0092ff', padding: '8px 0' };
 
 class SuggestedTasksView extends React.Component {
 
   constructor() {
     super()
-    this.state = { dog: "fido", counter: 5, total: [0, 1, 2, 3] };
+    this.state = { dog: "fido", counter: 5, total: [0, 1, 2, 3], value: '' };
     this.onClick = this.onClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   scrollToBottom = () => {
     this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   }
-
   componentDidMount() {
     this.scrollToBottom();
   }
-
   componentDidUpdate() {
     this.scrollToBottom();
   }
-
-
 
   onClick() {
     this.setState({
@@ -60,37 +31,33 @@ class SuggestedTasksView extends React.Component {
       total: this.state.total.concat([...new Array(4)]),
 
     });
+  }
 
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
   }
 
   render() {
-    console.log(this.state.counter)
-    console.log(this.state.total);
-    let testing = this.state.dog;
-
     return (
-
-      <div >
-       <div className="headerDiv"><h1 className="cardHeader">My Requests</h1></div>
-
-      
-
-
-     
-    <Row gutter={48}  justify="center">
-      {this.state.total.map((value) =>
-      <Col className="gutter-row" flex="" span={5}key={value}>
-
-        <SuggestedTasksCardView />
-      </Col>)}
-    </Row>
-    
-
-
-
+      <div style={{ marginLeft: '5vw', marginRight: '7vw' }} >
+        <div className="headerDiv"><h1 className="cardHeader">Tasks in My Area</h1></div>
+        <div className="flex-grid">
+          {this.state.total.map((value) =>
+            <div>
+              <div className="col">
+                <SuggestedTasksCardView />
+              </div>
+            </div>
+          )}
+        </div>
 
         <div style={{ display: "flex", justifyContent: "center", padding: "2%" }}>
-        <Button type="primary" onClick={this.onClick} style={{
+          <Button type="primary" onClick={this.onClick} style={{
             backgroundColor: "#dedede",
             borderColor: "black",
             color: "black",
@@ -103,14 +70,16 @@ class SuggestedTasksView extends React.Component {
           }}
             ghost> MORE </Button>
           <br></br>
-
-
         </div>
-
-        <Grid>
-
-        </Grid>
-        <p>My zip code is: </p>
+        <div className="zipCode">
+        <form onSubmit={this.handleSubmit}>
+        <label>
+        My zip code is: 
+          <input className="zipCodeInput" type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        
+      </form>
+        </div>
         <div style={{ float: "left", clear: "both" }}
           ref={(el) => { this.messagesEnd = el; }}>
         </div>

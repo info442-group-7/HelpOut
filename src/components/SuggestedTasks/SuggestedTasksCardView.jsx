@@ -1,70 +1,11 @@
 import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Cards from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import { styled } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-
+import { PlusCircleTwoTone } from '@ant-design/icons';
+import { Tooltip } from 'antd';
+import '../../App.css'
 import { Card } from 'antd';
-import { Typography } from 'antd';
-import s from '../../App.css'
-const { Title } = Typography;
 
-
-
-const useStyles = makeStyles({
-    root: {
-        minWidth: 275,
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-});
-
-const MyButton = styled(Button)({
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
-    height: 40,
-    padding: '0 52px',
-    margin: 4,
-});
-
-const DoneButton = styled(Button)({
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
-    height: 48,
-    padding: '0 40px',
-    marginBottom: '25px',
-    margin: 4,
-});
-
-const MoreButton = styled(Button)({
-    background: 'linear-gradient(45deg, #585350 30%, #8D8987 90%)',
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
-    height: 40,
-    padding: '0 60px',
-    margin: 4,
-});
+const accept = <span>Claim Task</span>;
 
 class SuggestedTasksCardView extends Component {
 
@@ -75,6 +16,11 @@ class SuggestedTasksCardView extends Component {
         this.handleClick.bind(this);
     }
 
+    onClick() {
+        this.setState({
+            clicked: false
+        });
+    }
     handleClick() {
         this.setState(previousState => {
             return {
@@ -83,59 +29,39 @@ class SuggestedTasksCardView extends Component {
         });
     }
 
-    onClick() {
-        this.setState({
-            clicked: false
-        });
-    }
-
     render() {
-        const Results = () => (
-            <Grid container justify="center">
-                <DoneButton size="small" onClick={this.onClick} >Done!</DoneButton>
-            </Grid>
-        )
         const succeed = (
-            <div>(253) 310-3409<br></br></div>
+            <div className='claimedText'>Claimed!</div>
         )
         const notsucceed = (
             <div>
-                <MoreButton size="small">
-                    More ...
-        </MoreButton>
-                <MyButton size="small" onClick={this.onClick} >
-                    Give up ...
-        </MyButton>
+                <Tooltip placement="bottom" title={accept}>
+                    <Button>
+                        <PlusCircleTwoTone style={{ fontSize: '40px' }} />
+                    </Button>
+                </Tooltip>
             </div>
         )
 
-        if (this.state.clicked) {
-            return (
-                <div>
-                    <Card className="cardStyle" style={{ width: "36vmin", height: "34vh", boxShadow: "0 8px 6px -6px #aaaaaa", margin: "5%", lineHeight: "2vmin" }}>
-                        <h5 className="cardTitle">Getting groceries for gramma</h5>
-                        <p cclassName="cardDescription"><br />Lorem ipsum dolor sit amet, consectetur adipis0ing elit, sed do eiusmod tempor
+        return (
+            <div>
+                <Card className="cardStyle" style={{ width: '350px', height: "350px", boxShadow: "0 8px 6px -6px #aaaaaa", lineHeight: "24px", display: 'flex', flexDirection: 'column' }}>
+                    <h5 className="cardTitle">Getting groceries for gramma</h5>
+                    <hr className="cardLineBreak"></hr>
+                    <div className="cardDesDiv">
+                        <p className="cardDescription">Lorefsdfsdf dfsdfsdf fsdfsdf fsdfsdf fsdfsdf fsdfdsfds dsfdsfds fdsfsdfsd fsdfdsm ipsum dolor sit amet, consectetur adipis0ing elit, sed do eiusmod tempor
                             incididunt ut labore </p>
-                        <p className="cardRequester">Requester's name</p>
-                        <p className="cardRequested">Requested 10 days ago</p>
-                        <div style={{ display: "flex", justifyContent: "center" }}><Button type="primary" style={{
-                            background: 'linear-gradient(45deg, #0059ff 30%, #0088ff 90%)',
-                            boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-                            color: 'white',
-                            height: '5vmin',
-                            padding: '0vmin 4vmin',
-                            marginBottom: '2vmin',
-                            margin: '2vmin',
-                        }}
-                        > Accept </Button></div>
-                    </Card>
-                </div>
-            );
-        }
-        else {
-            return null;
-        }
+                    </div>
+                    <p className="cardRequester">Requester's name</p>
+                    <p className="cardRequested">Created 10 days ago</p>
+                    <div className="suggestedTaskButton">
+                        <div onClick={this.handleClick.bind(this)}> {this.state.succeed ? succeed : notsucceed} </div>
+                    </div>
+                </Card>
+            </div>
+        );
     }
+
 }
 
 export default SuggestedTasksCardView;
