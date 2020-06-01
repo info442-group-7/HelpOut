@@ -10,7 +10,8 @@ import UserLoginView from './components/UserLogin/UserLoginView';
 import MyRequests from './components/MyRequests/MyRequestsView';
 import Test from './components/SuggestedTasks/test';
 import logo from './logo.png';
-import styles from './App.css'
+import styles from './App.css';
+import './test.css';
 import DashboardLayout from './components/DashboardLayout/DashboardLayout';
 import HomeView from './components/HomeView';
 import { DownOutlined } from '@ant-design/icons';

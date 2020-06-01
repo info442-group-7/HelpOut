@@ -2,7 +2,7 @@ import { Form, Input, Select, Tooltip, Button } from 'antd';
 
 const { Option } = Select;
 
-const Demo = () => {
+const UserSignUpView = () => {
   const onFinish = values => {
     console.log('Received values of form: ', values);
   };
@@ -68,3 +68,5 @@ const Demo = () => {
     </Form>
   );
 };
+
+export default UserSignUpView;
