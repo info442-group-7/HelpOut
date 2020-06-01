@@ -7,8 +7,10 @@ const HomePageView = (props) => {
         <div className="homepageBody">
             <div className="greeting">
                 <h1 className="homePageHeader">Good Morning, Alex!</h1>
-                <p>Our community completed <b>250 tasks </b>yesterday to help the people in need.</p>
-                <p>You have helped <b>20 people </b>so far. Would you like to make it <b>21 </b>today?</p>
+                <div id="homepage-descrip">
+                    <p>Our community completed <b>250 tasks </b>yesterday to help the people in need.</p>
+                    <p>You have helped <b>20 people </b>so far. Would you like to make it <b>21 </b>today?</p>
+                </div>
             </div>
             <div className='options'>
                 <div className='needHelp'>
