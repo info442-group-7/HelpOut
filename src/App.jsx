@@ -14,6 +14,7 @@ import styles from './App.css';
 import './test.css';
 import DashboardLayout from './components/DashboardLayout/DashboardLayout';
 import HomeView from './components/HomeView';
+import SignUpView from './components/UserSignUp/UserSignUpView'
 import { DownOutlined } from '@ant-design/icons';
 import HomePageView from './components/HomePageView';
 const { Header, Content, Footer, Sider } = Layout;
@@ -67,6 +68,7 @@ const App = () => {
             <Route path="/HomePageView" component={HomePageView} />
             <Route path="/CreateRequest" component={CreateNewRequestView} />
             <Route path="/login" component={UserLoginView} />
+            <Route path="/signup" component={SignUpView} />
 
           </Content>
         </Layout>
