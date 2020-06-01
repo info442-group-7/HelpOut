@@ -6,7 +6,7 @@ import { DatePicker, message } from 'antd';
 import 'antd/dist/antd.css';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import firebase from 'firebase/app';
+import firebase from './firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 

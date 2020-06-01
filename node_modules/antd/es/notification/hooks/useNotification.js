@@ -46,17 +46,16 @@ export default function createUseNotification(getNotificationInstance, getRCNoti
     } // Fill functions
 
 
-    var hookAPI = {
-      open: notify
-    };
+    var hookApiRef = React.useRef({});
+    hookApiRef.current.open = notify;
     ['success', 'info', 'warning', 'error'].forEach(function (type) {
-      hookAPI[type] = function (args) {
-        return hookAPI.open(_extends(_extends({}, args), {
+      hookApiRef.current[type] = function (args) {
+        return hookApiRef.current.open(_extends(_extends({}, args), {
           type: type
         }));
       };
     });
-    return [hookAPI, /*#__PURE__*/React.createElement(ConfigConsumer, {
+    return [hookApiRef.current, /*#__PURE__*/React.createElement(ConfigConsumer, {
       key: "holder"
     }, function (context) {
       getPrefixCls = context.getPrefixCls;
