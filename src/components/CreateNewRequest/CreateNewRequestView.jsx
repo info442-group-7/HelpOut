@@ -2,7 +2,7 @@ import { Form, Input, InputNumber, Modal, Button } from 'antd';
 import React, { Component } from 'react';
 import { CheckCircleOutlined } from '@ant-design/icons';
 import { Redirect, Link, useHistory } from 'react-router-dom';
-
+import firebase from 'firebase/app';
 
 const { confirm } = Modal;
 
@@ -25,7 +25,6 @@ const validateMessages = {
   },
 };
 
-
 // creates the request view
 const CreateNewRequestView = () => {
 
@@ -36,10 +35,11 @@ const CreateNewRequestView = () => {
     history.push("/MyRequests");
   };
 
-
   // on successful submission, creates modal 
   const onFinish = values => {
     console.log('Success:', values);
+    let userTest = firebase.database().ref("USER");
+    userTest.push({user_city: "TESTING"})
 
     // somehow send to database here!
 
@@ -52,8 +52,6 @@ const CreateNewRequestView = () => {
     // connect this state to db (promise, return)
     console.log('Failed:', errorInfo);
   };
-
-  
 
   // modal informing user that their submission was successful, onclick will redirect them
   function success() {
