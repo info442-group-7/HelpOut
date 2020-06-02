@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import { Card } from 'antd';
 import '../../App.css'
-import { InfoCircleTwoTone, CheckCircleTwoTone, CloseCircleTwoTone } from '@ant-design/icons';
+import '../../App.css'
+import { InfoCircleTwoTone, EditTwoTone, CheckCircleTwoTone, CloseCircleTwoTone } from '@ant-design/icons';
 import { Tooltip } from 'antd';
+
+
+const deletetask = <span>Delete</span>;
+const edit = <span>Edit</span>;
 
 const abandon = <span>Give up...</span>;
 const complete = <span>Done!</span>;
@@ -32,6 +37,8 @@ class ClaimedTasksCardView extends Component {
 
 
         const Results = () => (
+
+            
             <Tooltip placement="bottom" title={abandon}>
                 <Button onClick={this.onClick} ><CloseCircleTwoTone twoToneColor="#eb2f96" style={{ fontSize: '40px' }} /></Button>
             </Tooltip>
