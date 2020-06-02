@@ -77,6 +77,7 @@ class SuggestedTasksCardView extends Component {
 
         });
 
+        // map a random set of 3? and then when u click 3 more you can just call this again. 
         let requestItems = mappedKeys.map((requestObj) => {
             return <SuggestedTask task={requestObj} />
         
