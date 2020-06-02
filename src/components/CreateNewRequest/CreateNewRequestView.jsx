@@ -2,11 +2,9 @@ import { Form, Input, InputNumber, Modal, Button } from 'antd';
 import React, { Component } from 'react';
 import { CheckCircleOutlined } from '@ant-design/icons';
 import { Redirect, Link, useHistory } from 'react-router-dom';
-import firebase from 'firebase/app';
+// import firebase from 'firebase/app';
 
 const { confirm } = Modal;
-
-
 
 const layout = {
   labelCol: { span: 8 },
@@ -38,8 +36,8 @@ const CreateNewRequestView = () => {
   // on successful submission, creates modal 
   const onFinish = values => {
     console.log('Success:', values);
-    let userTest = firebase.database().ref("USER");
-    userTest.push({user_city: "TESTING"})
+    // let userTest = firebase.database().ref("USER");
+    // userTest.push({user_city: "TESTING"})
 
     // somehow send to database here!
 

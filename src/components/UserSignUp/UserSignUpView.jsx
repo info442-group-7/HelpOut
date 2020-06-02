@@ -1,23 +1,44 @@
 import { Form, Input, Select, Tooltip, Button } from 'antd';
 import React, { Component } from 'react';
-
-
+import firebase from "../../FirebaseUtil";
 const { Option } = Select;
 
 const UserSignUpView = () => {
-  const onFinish = values => {
+  const onFinish = async (values) => {
     console.log('Received values of form: ', values);
+    const authUserResponse = await firebase.app().auth().createUserWithEmailAndPassword(values.email, values.password)
+    console.log(authUserResponse)
+   const newUserSnapshot = await firebase.database().ref('USER/' + authUserResponse.user.uid).set({  //reference to collection 
+      // username: name,
+      email: values.email
+      // profile_picture : imageUrl
+    });
+    console.log(newUserSnapshot.val())
   };
 
   return (
     <Form name="complex-form" onFinish={onFinish} labelCol={{ span: 8 }} wrapperCol={{ span: 16 }}>
-      <Form.Item label="Username">
+      <Form.Item label="Email">
         <Form.Item
-          name="username"
+          name="email"
           noStyle
-          rules={[{ required: true, message: 'Username is required' }]}
+          rules={[{ required: true, message: 'Email is required' }]}
         >
-          <Input style={{ width: 160 }} placeholder="Please input" />
+          <Input style={{ width: 160 }} placeholder="Please input" type="email"/>
+        </Form.Item>
+        <Tooltip title="Useful information">
+          <a href="#API" style={{ margin: '0 8px' }}>
+            Need Help?
+          </a>
+        </Tooltip>
+      </Form.Item>
+      <Form.Item label="Password">
+        <Form.Item
+          name="password"
+          noStyle
+          rules={[{ required: true, message: 'Password is required' }]}
+        >
+          <Input style={{ width: 160 }} placeholder="Please input" type="password"/>
         </Form.Item>
         <Tooltip title="Useful information">
           <a href="#API" style={{ margin: '0 8px' }}>

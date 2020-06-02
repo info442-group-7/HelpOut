@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from "../../FirebaseUtil";
 
 import { Form, Input, Button, Checkbox } from 'antd';
 
@@ -18,14 +19,17 @@ const tailLayout = {
 };
 
 const UserLoginView = () => {
-  const onFinish = values => {
+  const onFinish = async (values) => {
     console.log('Success:', values);
+    const authUserResponse = await firebase.app().auth().signInWithEmailAndPassword(values.email, values.password)
+    console.log(authUserResponse);
   };
 
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
   };
-
+// put util file 
+// on finish call firebase
   return (
     <Form
       {...layout}
@@ -37,8 +41,8 @@ const UserLoginView = () => {
       onFinishFailed={onFinishFailed}
     >
       <Form.Item
-        label="Username"
-        name="username"
+        label="Email"
+        name="email"
         rules={[
           {
             required: true,
