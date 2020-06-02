@@ -17,6 +17,8 @@ import HomeView from './components/HomeView';
 import SignUpView from './components/UserSignUp/UserSignUpView'
 import { DownOutlined } from '@ant-design/icons';
 import HomePageView from './components/HomePageView';
+
+
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 

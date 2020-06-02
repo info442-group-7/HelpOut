@@ -84,12 +84,15 @@ class SuggestedTasksCardView extends Component {
     }
 
     onClick() {
+        console.log('clikced done!!');
         this.setState({
             clicked: false
         });
     }
 
     render() {
+    
+
         const Results = () => (
             <Grid container justify="center">
                 <DoneButton size="small" onClick={this.onClick} >Done!</DoneButton>
@@ -138,7 +141,22 @@ class SuggestedTasksCardView extends Component {
     }
 }
 
+// A single task
+class SuggestedTask extends Component {
+
+    render () {
+        let task = this.props.task;
+    }
+
+
+}
+
+
+
+
 export default SuggestedTasksCardView;
+
+
 
 
 //<Container maxWidth="xs">
