@@ -1,17 +1,6 @@
 import React, { Component } from 'react';
 import ClaimedTasksCardView from "./ClaimedTasksCardView";
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-//import Button from '@material-ui/core/Button';
-import { styled } from '@material-ui/core/styles';
 import '../../App.css'
-
-import { Row, Col } from 'antd';
-import { Card } from 'antd';
-
-
-
-const style = { background: '#0092ff', padding: '8px 0' };
 
 class ClaimedTasksView extends React.Component {
 
@@ -33,33 +22,22 @@ class ClaimedTasksView extends React.Component {
     componentDidUpdate() {
       this.scrollToBottom();
     }
-   <Row gutter={{sm: 2, lg: 48}}  justify="center">
   */
 
   onClick() {
     this.setState({
       counter: this.state.counter + 1,
       total: this.state.total.concat([...new Array(5)]),
-
     });
-
   }
 
   updateCards() {
     this.setState({
       cards: this.state.cards + 1
     });
-
-
   }
 
-
-
-
   render() {
-    console.log(this.state.counter)
-    console.log(this.state.total);
-    let testing = this.state.dog;
     return (
       <div style={{ marginLeft: '5vw', marginRight: '7vw' }} >
         <div className="headerDiv"><h1 className="cardHeader">Claimed Tasks</h1></div>
