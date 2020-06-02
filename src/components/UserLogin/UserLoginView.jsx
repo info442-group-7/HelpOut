@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import firebase from "../../FirebaseUtil";
+import { Form, Input, Button } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { Redirect, Link, useHistory } from 'react-router-dom';
 
-import { Form, Input, Button, Checkbox } from 'antd';
+
+import './UserLoginView.css';
 
 const layout = {
   labelCol: {
@@ -19,6 +23,9 @@ const tailLayout = {
 };
 
 const UserLoginView = () => {
+
+  const history = useHistory();
+
   const onFinish = async (values) => {
     console.log('Success:', values);
     const authUserResponse = await firebase.app().auth().signInWithEmailAndPassword(values.email, values.password)
@@ -28,54 +35,62 @@ const UserLoginView = () => {
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
   };
+
+  const redirectToSignUp = function() {
+    console.log('pushing to signup')
+    history.push(`/signup`);
+  }
+
 // put util file 
 // on finish call firebase
   return (
-    <Form
-      {...layout}
-      name="basic"
-      initialValues={{
-        remember: true,
-      }}
+    <div id="login-container">
+      <h1>Welcome to Helpout!</h1>
+      <h2>Please log in or sign up to continue.</h2>
+
+      <Form
+      name="normal_login"
+      className="login-form"
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
+      onFinishFaild={onFinishFailed}
     >
       <Form.Item
-        label="Email"
-        name="email"
+        name="username"
         rules={[
           {
             required: true,
-            message: 'Please input your username!',
+            // message: 'Please input your email!',
           },
         ]}
       >
-        <Input />
+        <Input prefix={<UserOutlined className="site-form-item-icon" />} type='email' placeholder="Email" />
       </Form.Item>
-
       <Form.Item
-        label="Password"
         name="password"
         rules={[
           {
             required: true,
-            message: 'Please input your password!',
+            // message: 'Please input your Password!',
           },
         ]}
       >
-        <Input.Password />
+        <Input
+          prefix={<LockOutlined className="site-form-item-icon" />}
+          type="password"
+          placeholder="Password"
+        />
       </Form.Item>
+     <Form.Item>
 
-      <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
+        <Button type="primary" htmlType="submit" className="login-form-button">
+          Log in
         </Button>
       </Form.Item>
-    </Form>
+      </Form>
+      <hr class='form-divider'></hr>
+      <p>Don't have an account yet?</p>
+      <Button type="secondary" onClick={redirectToSignUp}>Sign up</Button>
+    </div>
   );
 };
 // const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login;

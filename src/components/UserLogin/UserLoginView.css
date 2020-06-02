@@ -1,0 +1,27 @@
+#login-container {
+    text-align: center;
+}
+
+#login-container .login-form  {
+    max-width: 300px;
+    margin: auto !important;
+}
+
+
+#login-container.login-form-button {
+  width: 100%;
+}
+
+#login-container h1 {
+    font-size: 3em;
+    margin-bottom: 0px;
+}
+#login-container h2 {
+    font-size: 1.2em;
+    margin-bottom: 1.5em;
+}
+
+.form-divider {
+    width: 30%;
+}
+
