@@ -40,7 +40,6 @@ class SuggestedTasksCardView extends Component {
         this.requestsRef.on('value', (snapshot) => {
             let value = snapshot.val();
             this.setState({requests: value});
-
         });
     }
 

@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import { Card } from 'antd';
 import '../../App.css'
-import { InfoCircleTwoTone, CheckCircleTwoTone, CloseCircleTwoTone } from '@ant-design/icons';
-import { Tooltip } from 'antd';
 import '../../App.css'
-import { EditTwoTone, CheckCircleTwoTone, CloseCircleTwoTone } from '@ant-design/icons';
+import { InfoCircleTwoTone, EditTwoTone, CheckCircleTwoTone, CloseCircleTwoTone } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 
 
@@ -41,26 +39,26 @@ class ClaimedTasksCardView extends Component {
         const Results = () => (
 
             
-        //     <Tooltip placement="bottom" title={abandon}>
-        //         <Button onClick={this.onClick} ><CloseCircleTwoTone twoToneColor="#eb2f96" style={{ fontSize: '40px' }} /></Button>
-        //     </Tooltip>
-        // )
-        // const succeed = (
-        //     <div>(253) 310-3409<br></br></div>
-        // )
-        // const notsucceed = (
-        //     <div>
-        //         <Tooltip placement="bottom" title={more}>
-        //             <Button>
-        //                 <InfoCircleTwoTone style={{ fontSize: '40px' }} />
-        //             </Button>
-        //         </Tooltip>
-        //         <Tooltip placement="bottom" title={complete}>
-        //             <Button onClick={this.onClick}>
-        //                 <CheckCircleTwoTone twoToneColor="#52c41a" style={{ fontSize: '40px' }} />
-        //             </Button> 
-        //         </Tooltip>
-        //     </div>
+            <Tooltip placement="bottom" title={abandon}>
+                <Button onClick={this.onClick} ><CloseCircleTwoTone twoToneColor="#eb2f96" style={{ fontSize: '40px' }} /></Button>
+            </Tooltip>
+        )
+        const succeed = (
+            <div>(253) 310-3409<br></br></div>
+        )
+        const notsucceed = (
+            <div>
+                <Tooltip placement="bottom" title={more}>
+                    <Button>
+                        <InfoCircleTwoTone style={{ fontSize: '40px' }} />
+                    </Button>
+                </Tooltip>
+                <Tooltip placement="bottom" title={complete}>
+                    <Button onClick={this.onClick}>
+                        <CheckCircleTwoTone twoToneColor="#52c41a" style={{ fontSize: '40px' }} />
+                    </Button> 
+                </Tooltip>
+            </div>
         )
 
         if (this.state.clicked) {
