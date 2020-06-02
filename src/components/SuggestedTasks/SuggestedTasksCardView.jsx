@@ -73,11 +73,11 @@ class SuggestedTasksCardView extends Component {
             let requestObj = this.state.requests[key];
             requestObj.id = key;
             return requestObj;
-
         });
 
         // map a random set of 3? and then when u click 3 more you can just call this again. 
         let requestItems = mappedKeys.map((requestObj) => {
+            if(requestObj = )
             return <SuggestedTask task={requestObj} />
         
         });
@@ -166,8 +166,6 @@ class SuggestedTask extends Component {
 }
 
 
-
-
 export default SuggestedTasksCardView;
 
 
@@ -176,7 +174,6 @@ export default SuggestedTasksCardView;
 //<Container maxWidth="xs">
 //    <Cards className={useStyles.root} variant="outlined">
 //        <CardContent>
-//
 //
 //        </CardContent>
 //        <CardActions>

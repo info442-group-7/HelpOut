@@ -38,11 +38,7 @@ const CreateNewRequestView = () => {
     console.log('Success:', values);
     console.log(values.zip)
     // let userTest = firebase.database().ref("USER");
-    // userTest.push({user_city: "TESTING"})
-
-    // somehow send to database here!
-
-  
+    // userTest.push({user_city: "TESTING"})  
 
 // src: https://stackoverflow.com/questions/38768576/in-firebase-when-using-push-how-do-i-get-the-unique-id-and-store-in-my-databas
 
@@ -70,8 +66,6 @@ const CreateNewRequestView = () => {
     // })
 
     requestRef.push(newRequestData)
-
-    
 
     success();
   };

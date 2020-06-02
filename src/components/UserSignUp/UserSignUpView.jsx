@@ -12,13 +12,27 @@ const UserSignUpView = () => {
     console.log('Received values of form: ', values);
     const authUserResponse = await firebase.app().auth().createUserWithEmailAndPassword(values.email, values.password)
     console.log('authuserresponse is ' + authUserResponse)
-   const newUserSnapshot = await firebase.database().ref('USER/' + authUserResponse.user.uid).set({  //reference to collection 
+    const newUserSnapshot = await firebase.database().ref('USER/' + authUserResponse.user.uid).set({  //reference to collection 
       // username: name,
-      USER_EMAIL: values.email
+      USER_EMAIL: values.email,
+      USER_DOB: values.dob, 
+      USER_FNAME: values.firstname,
+      USER_LNAME: values.lastname,
+      USER_ID: authUserResponse.user.uid,
+      USER_PHONE_NUMBER: values.phonenum,
+      USER_CITY: values.city,
+      USER_STATE: values.state,
+      USER_STREET_ADDRESS: 'values.street',
+      USER_ZIP_CODE: 'values.zipcode',
       // profile_picture : imageUrl
     });
     console.log(newUserSnapshot.val())
     // success();
+
+
+    
+
+
   };
 
   //   // if error connecting to DB
@@ -124,7 +138,7 @@ const UserSignUpView = () => {
         <Form.Item label="Address">
           <Input.Group>
             <Form.Item
-              name={['address', 'street']}
+              name={'street'}
               noStyle
               rules={[{ required: true, message: 'Your full address is required.' }]}
             >
@@ -132,14 +146,14 @@ const UserSignUpView = () => {
             </Form.Item>
   
             <Form.Item
-              name={['address', 'city']}
+              name={'city'}
               noStyle
               rules={[{ required: true, message: 'Your full address is required.' }]}
             >
               <Input style={{ width: '50%' }} placeholder="City" />
             </Form.Item>
             <Form.Item
-              name={['address', 'zipcode']}
+              name={'zipcode'}
               noStyle
               rules={[{ required: true, message: 'Your full address is required.' }]}
             >
@@ -147,7 +161,7 @@ const UserSignUpView = () => {
             </Form.Item>
 
             <Form.Item
-              name={['address', 'state']}
+              name={'state'}
               noStyle
               rules={[{ required: true, message: 'Your full address is required.' }]}
             >
