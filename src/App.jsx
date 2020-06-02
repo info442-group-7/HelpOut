@@ -10,13 +10,15 @@ import UserLoginView from './components/UserLogin/UserLoginView';
 import MyRequests from './components/MyRequests/MyRequestsView';
 import Test from './components/SuggestedTasks/test';
 import logo from './logo.png';
-import styles from './App.css';
-import './test.css';
 import DashboardLayout from './components/DashboardLayout/DashboardLayout';
 import HomeView from './components/HomeView';
 import SignUpView from './components/UserSignUp/UserSignUpView'
 import { DownOutlined } from '@ant-design/icons';
 import HomePageView from './components/HomePageView';
+// import styles from './App.css';
+import './test.css';
+
+
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -31,6 +33,18 @@ const menuTasks = (
     </Menu.Item>
     <Menu.Item> <a rel="noopener noreferrer" href="/SuggestedTasks"> Find new tasks </a>
     </Menu.Item>
+  </Menu>
+);
+
+const menuRequests = (
+  <Menu>
+    <Menu.Item>
+    <a rel="noopener noreferrer" href="/MyRequests"> My requests </a>
+    </Menu.Item>
+    <Menu.Item>
+    <a rel="noopener noreferrer" href="/CreateRequest"> Create a request </a>
+    </Menu.Item>
+
   </Menu>
 );
 
@@ -54,7 +68,11 @@ const App = () => {
               </a>
             </Dropdown>
             </Menu.Item>
-            <Menu.Item key="3"><span>Requests</span><Link to="/MyRequests" />
+            <Menu.Item key="3"><Dropdown overlay={menuRequests}>
+              <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                Requests <DownOutlined />
+              </a>
+            </Dropdown>
             </Menu.Item>
             <Menu.Item key="4">Additional Resources
                 <Link to="/test" /></Menu.Item>
