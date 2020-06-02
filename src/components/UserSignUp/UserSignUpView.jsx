@@ -22,8 +22,8 @@ const UserSignUpView = () => {
       USER_PHONE_NUMBER: values.phonenum,
       USER_CITY: values.city,
       USER_STATE: values.state,
-      USER_STREET_ADDRESS: 'values.street',
-      USER_ZIP_CODE: 'values.zipcode',
+      USER_STREET_ADDRESS: values.street,
+      USER_ZIP_CODE: values.zipcode,
       // profile_picture : imageUrl
     });
     console.log(newUserSnapshot.val())
