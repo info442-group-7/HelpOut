@@ -26,12 +26,8 @@ const UserSignUpView = () => {
       USER_ZIP_CODE: values.zipcode,
       // profile_picture : imageUrl
     });
-    console.log(newUserSnapshot.val())
+    // console.log(newUserSnapshot.val())
     // success();
-
-
-    
-
 
   };
 

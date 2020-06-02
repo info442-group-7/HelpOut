@@ -55,7 +55,7 @@ const UserLoginView = () => {
       onFinishFaild={onFinishFailed}
     >
       <Form.Item
-        name="username"
+        name="email"
         rules={[
           {
             required: true,
