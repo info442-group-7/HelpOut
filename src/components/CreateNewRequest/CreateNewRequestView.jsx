@@ -1,5 +1,5 @@
 import { Form, Input, InputNumber, Modal, Button } from 'antd';
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { CheckCircleOutlined } from '@ant-design/icons';
 import { Redirect, Link, useHistory } from 'react-router-dom';
 import firebase from 'firebase/app';
@@ -26,12 +26,34 @@ const validateMessages = {
 // creates the request view
 const CreateNewRequestView = () => {
 
+
+  useEffect(() => {
+
+    firebase.auth().onAuthStateChanged(user => {
+
+      var currentUserId;
+
+      if (user) {
+          console.log('This is the user: ', user.uid)
+          currentUserId = user.uid;
+          setID(currentUserId);
+        // User is signed in.
+      } else {
+        // No user is signed in.
+        console.log("user is not logged in!")
+        currentUserId = '';
+      }
+  });
+  })
+
   const history = useHistory();
 
   // redirects/reroutes to request page
   const doneRedirect = function() {
     history.push("/MyRequests");
   };
+
+  const [userID, setID] = useState('');
 
   // on successful submission, creates modal 
   const onFinish = values => {
@@ -42,30 +64,26 @@ const CreateNewRequestView = () => {
 
 // src: https://stackoverflow.com/questions/38768576/in-firebase-when-using-push-how-do-i-get-the-unique-id-and-store-in-my-databas
 
-    let requestRef = firebase.database().ref("REQUEST").push();
-    var key = requestRef.key;
+
+  let requestRef = firebase.database().ref("REQUEST");
 
 
     var newRequestData={
-      REQUEST_ID: key,
-      REQUESTER_ID: 'test', //eventually put userid = firebase user auth id
+      REQUEST_ID: 'null',
+      REQUESTER_ID: userID, //eventually put userid = firebase user auth id
       REQUEST_DATE: new Date().toLocaleString(),
       REQUEST_DESCRIPTION: values.details,
       REQUEST_STATUS: "incomplete", // to start
       REQUEST_TIME: 'mock - add date function here',
       REQUEST_TITLE: values.title,
       USER_ID: '' //ONCE SOMEONe accepts, this is updated
-
     }
 
-    // requestRef.push({
-    //   REQUESTER_ID: 'test', //eventually put userid = firebase user auth id
-    //   REQUEST_DATE: new Date().toLocaleString(),
-    //   REQUEST_DESCRIPTION: values.details,
-
-    // })
-
-    requestRef.push(newRequestData)
+    requestRef.push(newRequestData);
+  //  var newRef = requestRef.push(newRequestData);
+  //  var newID = newRef.key;
+  //  console.log('id is = ' + newID)
+  //  requestRef.child(newID).set({REQUEST_ID: newID})
 
     success();
   };
@@ -85,7 +103,6 @@ const CreateNewRequestView = () => {
       title: 'Submit successful!',
       // content: 'View your requests to see your new entry.',
       onOk() {
-        console.log('hi this is redirect to request')
         doneRedirect();
       }
     });
