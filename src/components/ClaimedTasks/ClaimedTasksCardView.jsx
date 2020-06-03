@@ -79,15 +79,18 @@ class ClaimedTasksCardView extends Component {
             return requestObj;
         });
 
-        let taskItems = mappedKeys.map((taskObj) => {
-            if (this.state.currentUser == taskObj.USER_ID) {
-                mappedRequestKeys.map((requestObj) => {
-                    if (requestObj.REQUEST_ID == taskObj.TASK_ID) {
+        let taskItems = mappedKeys.map((taskObj) => { // for each taskObj
+            let taskValue = '' // initalize a task object
+            if (this.state.currentUser == taskObj.USER_ID) { // if the user claimed that task
+                mappedRequestKeys.map((requestObj) => { // you iterate through for each request object
+                    if (requestObj.REQUEST_ID == taskObj.TASK_ID) { // if the request objectid  matches the task object
                         console.log(requestObj)
-                        return <ClaimedTaskView task={requestObj} />
+                        taskValue= requestObj // asign the object to taskvalue
                     }
                 })
-            }});
+                return <ClaimedTaskView task={taskValue} />
+            } //go to next task
+        });
       
 
         return (
@@ -206,7 +209,6 @@ export default ClaimedTasksCardView;
       //  {this.state.succeed ? null : <Results />}
   //  </Cards>
 //</Container>
-
 
 
 

@@ -64,10 +64,9 @@ class MyRequestsView extends React.Component {
         </div>
         <div style={{ marginLeft: "17vmin" }}>
           <Row gutter={{ sm: 2, lg: 48 }} justify="start" >
-            {this.state.total.map((value) =>
-              <Col className="gutter-row" span={5} key={value}>
+              <Col className="gutter-row" >
                 <MyRequestsCardView />
-              </Col>)}
+              </Col>
             {this.state.succeed ? succeed : notsucceed}
           </Row>
           <div style={{ display: 'flex' }}>

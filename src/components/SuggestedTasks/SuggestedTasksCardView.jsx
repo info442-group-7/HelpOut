@@ -28,13 +28,20 @@ class SuggestedTasksCardView extends Component {
         super(props);
         this.state = { 
             clicked: true,
-            requests: []
+            requests: [],
+            currentUser: null
         };
         this.onClick = this.onClick.bind(this);
         this.handleClick.bind(this);
     }
 
     componentDidMount() {
+        firebase.auth().onAuthStateChanged(function(user) {
+            this.setState({currentUser: user.uid})
+            console.log(this.state.currentUser)
+        });
+          
+
         this.requestsRef = firebase.database().ref('REQUEST');
 
         this.requestsRef.on('value', (snapshot) => {
@@ -87,7 +94,7 @@ class SuggestedTasksCardView extends Component {
 
 
                 {requestItems}
-                </div>
+            </div>
         );
     }
 
