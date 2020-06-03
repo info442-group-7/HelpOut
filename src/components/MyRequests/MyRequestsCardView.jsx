@@ -18,6 +18,7 @@ class MyRequestsCardView extends Component {
         super(props);
         this.state = { clicked: true, 
             currentUser: null,
+            requests: [],
             count: 0
         };
         this.onClick = this.onClick.bind(this);
@@ -48,6 +49,12 @@ class MyRequestsCardView extends Component {
         this.requestsRef.on('value', (snapshot) => {
             let value = snapshot.val();
             this.setState({requests: value});
+        });
+
+        this.requesterRef = firebase.database().ref('REQUESTER');
+        this.requesterRef.on('value', (snapshot) => {
+            let value = snapshot.val();
+            this.setState({ requester: value });
         });
     }
 
@@ -164,8 +171,8 @@ class UserRequestCard extends Component {
                     <div className="cardDesDiv">
                     <p className="cardDescription">{request.REQUEST_DESCRIPTION} </p>
                         </div>
-                    <p className="cardRequester">Requester's name</p>
-                    <p className="cardRequested">Accepted on {request.REQUEST_DATE}</p>
+                    {/* <p className="cardRequester">Requester's name</p> */}
+                    <p className="cardRequested">Requested on {request.REQUEST_DATE}</p>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
                         <div> {this.state.succeed ? null : <Results />}</div>
                         <Tooltip placement="bottom" title={edit}>

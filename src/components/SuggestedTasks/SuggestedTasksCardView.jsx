@@ -29,6 +29,7 @@ class SuggestedTasksCardView extends Component {
         this.state = { 
             clicked: true,
             requests: [],
+            requester: [],
             currentUser: null
         };
         this.onClick = this.onClick.bind(this);
@@ -47,6 +48,12 @@ class SuggestedTasksCardView extends Component {
         this.requestsRef.on('value', (snapshot) => {
             let value = snapshot.val();
             this.setState({requests: value});
+        });
+
+        this.requesterRef = firebase.database().ref('REQUESTER');
+        this.requesterRef.on('value', (snapshot) => {
+            let value = snapshot.val();
+            this.setState({ requester: value });
         });
     }
 
@@ -80,6 +87,13 @@ class SuggestedTasksCardView extends Component {
             let requestObj = this.state.requests[key];
             requestObj.id = key;
             return requestObj;
+        });
+
+        let requesterKeys = Object.keys(this.state.requester);
+        let mappedRequesterKeys = requesterKeys.map((key) => {
+            let requesterObj = this.state.requester[key];
+            requesterObj.id = key;
+            return requesterObj;
         });
 
         // map a random set of 3? and then when u click 3 more you can just call this again. 
