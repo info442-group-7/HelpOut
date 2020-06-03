@@ -60,7 +60,7 @@ const App = () => {
 
   //A callback function for logging out the current user
   const handleSignOut = () => {
-    this.setState({errorMessage:null}); //clear any old errors
+    // this.setState({errorMessage:null}); //clear any old errors
 
     /* TODO: sign out user here */
     firebase.auth().signOut();
