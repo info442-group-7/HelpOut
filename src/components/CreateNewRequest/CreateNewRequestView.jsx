@@ -95,7 +95,7 @@ const CreateNewRequestView = () => {
   // renders actual page & form
   return (
     <div>
-      <h2>Create a new request</h2>
+      <h2 style={{fontSize: 40, fontWeight: 700}}>Create a new request</h2>
       <Form id="create-request" {...layout} style={{width:800}} name="nest-messages" onFinish={onFinish} onFinishFailed={onFinishFailed} validateMessages={validateMessages}>
         <Form.Item name={['title']} label="I need help with " rules={[{ required: true, message:'Your request title is required!' }]}>
           <Input style={{width: 500}}/>
