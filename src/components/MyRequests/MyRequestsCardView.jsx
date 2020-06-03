@@ -45,7 +45,6 @@ class MyRequestsCardView extends Component {
         });
        
         this.requestsRef = firebase.database().ref('REQUEST');
-
         this.requestsRef.on('value', (snapshot) => {
             let value = snapshot.val();
             this.setState({requests: value});
@@ -87,12 +86,9 @@ class MyRequestsCardView extends Component {
             requestObj.id = key;
             return requestObj;
         });
-
-
         
         let userRequestItems = mappedKeys.map((requestObj) => {
             if(requestObj.REQUESTER_ID == this.state.currentUser) {
-                console.log('match: ' + requestObj.REQUESTER_ID + ' ' + this.state.currentUser)
                 return <div className="col"><UserRequestCard request={requestObj} /></div> 
             }
         }); //else return null?

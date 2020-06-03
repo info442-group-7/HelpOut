@@ -30,21 +30,40 @@ class SuggestedTasksCardView extends Component {
             clicked: true,
             requests: [],
             requester: [],
-            currentUser: null
+            currentUser: null,
+            userZip: ''
         };
         this.onClick = this.onClick.bind(this);
         this.handleClick.bind(this);
+
+
     }
 
     componentDidMount() {
-        firebase.auth().onAuthStateChanged(function(user) {
-            this.setState({currentUser: user.uid})
-            console.log(this.state.currentUser)
+        firebase.auth().onAuthStateChanged(user => {
+            var givenUserID;
+            if (user) {
+                givenUserID = user.uid;
+                this.setState({currentUser: givenUserID})
+                console.log(this.state.currentUser)
+
+                this.usersRef = firebase.database().ref('USER').child(this.state.currentUser);
+                this.usersRef.on('value', (snapshot) => {
+                    let value = snapshot.val();
+                    this.setState({userZip: value.USER_ZIP_CODE})
+                    console.log('userZip is ' + this.state.userZip)
+                })
+
+
+            } else{
+                console.log('not logged in')
+                this.setState({currentUser:null})
+            }
         });
+
           
 
         this.requestsRef = firebase.database().ref('REQUEST');
-
         this.requestsRef.on('value', (snapshot) => {
             let value = snapshot.val();
             this.setState({requests: value});
@@ -105,8 +124,6 @@ class SuggestedTasksCardView extends Component {
 
         return (
             <div className='flex-grid'>
-
-
                 {requestItems}
             </div>
         );
