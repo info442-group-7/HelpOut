@@ -141,7 +141,8 @@ class SuggestedTask extends Component {
         this.setState({
             clicked: false
         });
-    }
+    
+     }
 
 
     render () {
@@ -152,6 +153,7 @@ class SuggestedTask extends Component {
                 <DoneButton size="small" onClick={this.onClick} >Done!</DoneButton>
             </Grid>
         )
+
         const succeed = (
             <div className='claimedText'>Claimed!</div>
         )

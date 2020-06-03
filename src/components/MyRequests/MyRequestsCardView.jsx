@@ -118,7 +118,7 @@ class UserRequestCard extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { clicked: true };
+        this.state = { clicked: true, taskID: null, requestStatus: null  };
         this.onClick = this.onClick.bind(this);
         this.handleClick.bind(this);
         this.deleteRequest.bind(this);
@@ -149,6 +149,33 @@ class UserRequestCard extends Component {
         return firebase.database().ref('REQUEST').child(requestObj.id).remove();
      }
 
+     componentDidMount() {
+        let requestObj = this.props.request;
+
+        this.requesterRef = firebase.database().ref('REQUEST').child(requestObj.id);
+        this.requesterRef.on('value', (snapshot) => {
+            let value = snapshot.val();
+            this.setState({
+                taskID: value.TASK_ID,
+                requestStatus: value.REQUEST_STATUS
+            })
+        });
+     }
+
+
+
+     isComplete () {
+        if (this.state.requestStatus == 'incomplete') {
+            if (this.state.taskID == "" || this.state.taskID == null) {
+                return (<p>INCOMPLETE, UNCLAIMED</p>)
+            } else {
+                return (<p>CLAIMED, IN PROGRESS</p>)
+            }
+        } else {
+            return (<p>COMPLETED</p>)
+        }
+    }
+
 
     render () {
         
@@ -171,6 +198,9 @@ class UserRequestCard extends Component {
                     <div className="cardDesDiv">
                     <p className="cardDescription">{request.REQUEST_DESCRIPTION} </p>
                         </div>
+                    <div>
+                        {this.isComplete()}
+                    </div>
                     {/* <p className="cardRequester">Requester's name</p> */}
                     <p className="cardRequested">Requested on {request.REQUEST_DATE}</p>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
