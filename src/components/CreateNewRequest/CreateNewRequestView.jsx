@@ -68,7 +68,21 @@ const CreateNewRequestView = () => {
   let requestRef = firebase.database().ref("REQUEST");
 
 
-    var newRequestData={
+    // var newRequestData={
+    //   REQUEST_ID: 'null',
+    //   REQUESTER_ID: userID, //eventually put userid = firebase user auth id
+    //   REQUEST_DATE: new Date().toLocaleString(),
+    //   REQUEST_DESCRIPTION: values.details,
+    //   REQUEST_STATUS: "incomplete", // to start
+    //   REQUEST_TIME: 'mock - add date function here',
+    //   REQUEST_TITLE: values.title,
+    //   USER_ID: '', //ONCE SOMEONe accepts, this is updated
+    //   TASK_ID: '' // once someone accepts, this is updated
+    // }
+
+    var pushRef = requestRef.push();
+    var key = pushRef.key;
+    pushRef.set({
       REQUEST_ID: 'null',
       REQUESTER_ID: userID, //eventually put userid = firebase user auth id
       REQUEST_DATE: new Date().toLocaleString(),
@@ -77,10 +91,10 @@ const CreateNewRequestView = () => {
       REQUEST_TIME: 'mock - add date function here',
       REQUEST_TITLE: values.title,
       USER_ID: '', //ONCE SOMEONe accepts, this is updated
-      TASK_ID: '' // once someone accepts, this is updated
-    }
+      TASK_ID: '',
+      REQUEST_ID: key 
+    })
 
-    requestRef.push(newRequestData);
   //  var newRef = requestRef.push(newRequestData);
   //  var newID = newRef.key;
   //  console.log('id is = ' + newID)
