@@ -1,18 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import SuggestedTasksCardView from "./SuggestedTasksCardView";
 import '../../App.css'
-import { Button } from 'antd';
+import { Button, Form, Input, Radio } from 'antd';
 import { InfoCircleTwoTone, CheckCircleTwoTone, CloseCircleTwoTone } from '@ant-design/icons';
+import firebase from 'firebase/app';
+import 'firebase/database'; 
+import './SuggestedTasks.css'
 
+
+const { Search } = Input;
 
 class SuggestedTasksView extends React.Component {
+  
 
   constructor() {
     super()
-    this.state = { dog: "fido", counter: 5, total: [0, 1, 2, 3], value: '' };
+    this.state = { dog: "fido", counter: 5, total: [0, 1, 2, 3], value: '', userZip: '', currentUser: '' };
     this.onClick = this.onClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateZip = this.updateZip.bind(this);
   }
 
   scrollToBottom = () => {
@@ -20,6 +27,28 @@ class SuggestedTasksView extends React.Component {
   }
   componentDidMount() {
     this.scrollToBottom();
+
+    firebase.auth().onAuthStateChanged(user => {
+      var givenUserID;
+      if (user) {
+          givenUserID = user.uid;
+          this.setState({currentUser: givenUserID})
+          console.log(this.state.currentUser)
+
+          // if not set by search function
+          if (this.state.userZip == '') {
+            this.usersRef = firebase.database().ref('USER').child(this.state.currentUser);
+            this.usersRef.on('value', (snapshot) => {
+                let value = snapshot.val();
+                this.setState({userZip: value.USER_ZIP_CODE})
+                console.log('userZip in componentdidmount is ' + this.state.userZip)
+            })
+          }
+      } else{
+          console.log('not logged in')
+          this.setState({currentUser:null})
+      }
+  });
   }
   componentDidUpdate() {
     this.scrollToBottom();
@@ -42,13 +71,31 @@ class SuggestedTasksView extends React.Component {
     event.preventDefault();
   }
 
+  updateZip(value) {
+    console.log('new zipcode entered is ' + value)
+    this.setState({userZip: value})
+  }
+
   render() {
     return (
       <div style={{ }} >
-        <div className="headerDiv"><h1 className="cardHeader">Tasks in My Area</h1></div>
+        <div className="headerDiv"><h1 className="cardHeader">Tasks in My Area ({this.state.userZip})</h1>
+        <div 
+          id="zipcode-search">
+          <Search
+            style={{float:'center'}}
+            placeholder={this.state.userZip}
+            enterButton="Search"
+            size="large"
+            onSearch={value => this.updateZip(value)}
+          />
+        </div>
+        
+        </div>
+
         
           {/* {this.state.total.map((value) => */}
-\                <SuggestedTasksCardView />
+\                <SuggestedTasksCardView  userZip={this.state.userZip} currentUser={this.state.currentUser} />
           {/* )} */}
         
 
@@ -67,15 +114,13 @@ class SuggestedTasksView extends React.Component {
             ghost> MORE </Button>
           <br></br>
         </div>
-        <div className="zipCode">
-        <form onSubmit={this.handleSubmit}>
+        {/* <form onSubmit={this.handleSubmit}>
         <label>
         My zip code is: 
           <input className="zipCodeInput" type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
         
-      </form>
-        </div>
+      </form> */}
         <div style={{ float: "left", clear: "both" }}
           ref={(el) => { this.messagesEnd = el; }}>
         </div>
@@ -84,6 +129,7 @@ class SuggestedTasksView extends React.Component {
   }
 }
 const Greeting = props => <h1>{props.greeting}</h1>;
+
 
 
 export default SuggestedTasksView;
