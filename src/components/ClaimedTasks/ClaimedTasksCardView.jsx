@@ -17,7 +17,7 @@ class ClaimedTasksCardView extends Component {
         super(props);
         this.state = {
             clicked: true,
-            currentUser: 'kelsie', tasks: [], requests: []
+            currentUser: 'kelsie', tasks: [], requests: [], requester: []
         };
         this.onClick = this.onClick.bind(this);
         this.handleClick.bind(this);
@@ -34,6 +34,12 @@ class ClaimedTasksCardView extends Component {
         this.requestsRef.on('value', (snapshot) => {
             let value = snapshot.val();
             this.setState({ requests: value });
+        });
+
+        this.requesterRef = firebase.database().ref('REQUESTER');
+        this.requesterRef.on('value', (snapshot) => {
+            let value = snapshot.val();
+            this.setState({ requester: value });
         });
     }
 
@@ -75,8 +81,16 @@ class ClaimedTasksCardView extends Component {
             return requestObj;
         });
 
+        let requesterKeys = Object.keys(this.state.requester);
+        let mappedRequesterKeys = requesterKeys.map((key) => {
+            let requesterObj = this.state.requester[key];
+            requesterObj.id = key;
+            return requesterObj;
+        });
+
         let taskItems = mappedKeys.map((taskObj) => {
             let requestValue = ''
+            let requesterValue = ''
             if (this.state.currentUser == taskObj.USER_ID && taskObj.TASK_STATUS == 'incomplete') {
                 console.log(taskObj.TASK_STATUS)
 
@@ -85,7 +99,14 @@ class ClaimedTasksCardView extends Component {
                         requestValue= requestObj
                     }
                 })
-                return <div className='col'> <ClaimedTaskView request={requestValue} task={taskObj}/></div>
+
+                mappedRequesterKeys.map((requesterObj) => {
+                    if (requesterObj.REQUESTER_ID == taskObj.REQUESTER_ID) {
+                        requesterValue= requesterObj
+                    }
+                })
+
+                return <div className='col'> <ClaimedTaskView request={requestValue} task={taskObj} requester={requesterValue}/></div>
             }
         });
       
@@ -143,6 +164,21 @@ class ClaimedTaskView extends Component {
     }
 
     render() {
+
+        function testUser () {
+            firebase.auth().onAuthStateChanged(function(user) {
+              if (user) {
+                // User is signed in.
+                console.log('signed in')
+                console.log(user.uid)
+              } else {
+                // No user is signed in.
+                console.log('not signed in')
+              }
+            });
+            console.log("you've reached function testUseryay!")
+          } 
+
         const Results = () => (
             <Tooltip placement="bottom" title={abandon}>
                 <Button onClick={this.abandonClick} ><CloseCircleTwoTone twoToneColor="#eb2f96" style={{ fontSize: '40px' }} /></Button>
@@ -167,6 +203,8 @@ class ClaimedTaskView extends Component {
         )
         let request = this.props.request;
         let task = this.props.task;
+        let requester = this.props.requester;
+        testUser()
 
         if (this.state.clicked) {
             return (
@@ -178,8 +216,8 @@ class ClaimedTaskView extends Component {
                         <div className="cardDesDiv">
                             <p className="cardDescription">{ request.REQUEST_DESCRIPTION } </p>
                         </div>
-                        <p className="cardRequester">Requester's name</p>
-                        <p className="cardRequested">Accepted 10 days ago</p>
+                        <p className="cardRequester">{ requester.REQUESTER_FNAME }  { requester.REQUESTER_LNAME }</p>
+                        <p className="cardRequested">Accepted on {task.CLAIMED_TIME }</p>
                         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
                             <div> {this.state.succeed ? null : <Results />}</div>
                             <div onClick={this.handleClick.bind(this)}> {this.state.succeed ? succeed : notsucceed} </div>
