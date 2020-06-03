@@ -17,7 +17,7 @@ import HomeView from './components/HomeView';
 import SignUpView from './components/UserSignUp/UserSignUpView'
 import { DownOutlined } from '@ant-design/icons';
 import HomePageView from './components/HomePageView';
-
+import AdditionalResourcesView from './components/AdditionalResources/AdditionalResourcesView'
 import firebase from 'firebase/app';
 import 'firebase/database'; 
 
@@ -33,7 +33,7 @@ const SubMenu = Menu.SubMenu;
 const menuTasks = (
   <Menu>
     <Menu.Item>
-    <a rel="noopener noreferrer" href="/ClaimedTasks"> My claimed  tasks </a>
+    <a rel="noopener noreferrer" href="/ClaimedTasks"> My claimed tasks </a>
     </Menu.Item>
     <Menu.Item> <a rel="noopener noreferrer" href="/SuggestedTasks"> Find new tasks </a>
     </Menu.Item>
@@ -51,6 +51,14 @@ const menuRequests = (
 
   </Menu>
 );
+
+const menuWelcome = (
+  <Menu>
+    <Menu.Item>
+
+    </Menu.Item>
+  </Menu>
+)
 
 const App = () => {
   const isAuthenticated = () => {
@@ -74,11 +82,12 @@ const App = () => {
             <Menu.Item key="1" style={{ alignItems: "center" }}><span> <Menu.Item key="1"><span><img src={logo} alt="Smiley face" height="50" /></span><Link to="/" />
             </Menu.Item></span>
             </Menu.Item>
-            <Menu.Item key="2"><Dropdown overlay={menuTasks}>
+            <Menu.Item key="2">
+              <Dropdown overlay={menuTasks}>
               <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
                 Tasks <DownOutlined />
               </a>
-            </Dropdown>
+              </Dropdown>
             </Menu.Item>
             <Menu.Item key="3"><Dropdown overlay={menuRequests}>
               <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
@@ -87,7 +96,7 @@ const App = () => {
             </Dropdown>
             </Menu.Item>
             <Menu.Item key="4">Additional Resources
-                <Link to="/test" /></Menu.Item>
+                <Link to="/AdditionalResourcesView" /></Menu.Item>
             <Menu.Item key="5" style={{ float: "right" }}>Welcome Back!
                 </Menu.Item>
           </Menu>
@@ -95,7 +104,7 @@ const App = () => {
             <Route exact path="/" component={HomeView} />
             <Route path="/SuggestedTasks" component={SuggestedTasks} />
             <Route path="/ClaimedTasks" component={ClaimedTasks} />
-            <Route path="/test" component={Test} />
+            <Route path="/AdditionalResources" component={AdditionalResourcesView} />
             <Route path="/MyRequests" component={MyRequests} />
             <Route path="/HomePageView" component={HomePageView} />
             <Route path="/CreateRequest" component={CreateNewRequestView} />

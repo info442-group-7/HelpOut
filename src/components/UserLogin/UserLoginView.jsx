@@ -3,8 +3,6 @@ import firebase from "../../FirebaseUtil";
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Redirect, Link, useHistory } from 'react-router-dom';
-
-
 import './UserLoginView.css';
 
 const layout = {
