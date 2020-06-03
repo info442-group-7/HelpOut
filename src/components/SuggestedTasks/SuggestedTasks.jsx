@@ -44,7 +44,7 @@ class SuggestedTasksView extends React.Component {
 
   render() {
     return (
-      <div style={{ marginLeft: '5vw', marginRight: '7vw' }} >
+      <div style={{ }} >
         <div className="headerDiv"><h1 className="cardHeader">Tasks in My Area</h1></div>
         
           {/* {this.state.total.map((value) => */}
