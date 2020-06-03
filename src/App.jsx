@@ -20,6 +20,8 @@ import HomePageView from './components/HomePageView';
 import AdditionalResourcesView from './components/AdditionalResources/AdditionalResourcesView'
 import firebase from 'firebase/app';
 import 'firebase/database'; 
+import { AuthProvider } from "./Auth";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -101,15 +103,17 @@ const App = () => {
                 </Menu.Item>
           </Menu>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#F1F4F6', minHeight: 280 }}>
-            <Route exact path="/" component={HomeView} />
-            <Route path="/SuggestedTasks" component={SuggestedTasks} />
-            <Route path="/ClaimedTasks" component={ClaimedTasks} />
-            <Route path="/AdditionalResources" component={AdditionalResourcesView} />
-            <Route path="/MyRequests" component={MyRequests} />
-            <Route path="/HomePageView" component={HomePageView} />
-            <Route path="/CreateRequest" component={CreateNewRequestView} />
+            <AuthProvider>
+            <PrivateRoute exact path="/" component={HomeView} />
+            <PrivateRoute path="/ClaimedTasks" component={ClaimedTasks} />
+            <PrivateRoute path="/AdditionalResources" component={AdditionalResourcesView} />
+            <PrivateRoute path="/MyRequests" component={MyRequests} />
+            <PrivateRoute path="/HomePageView" component={HomePageView} />
+            <PrivateRoute path="/CreateRequest" component={CreateNewRequestView} />
+            <PrivateRoute exact path="/SuggestedTasks" component={SuggestedTasks} />
             <Route path="/login" component={UserLoginView} />
             <Route path="/signup" component={SignUpView} />
+            </AuthProvider>
 
           </Content>
         </Layout>
@@ -118,6 +122,7 @@ const App = () => {
   );
 }
 
+//            <Route path="/SuggestedTasks" component={SuggestedTasks} />
 
 //import { BrowserRouter, Route, Switch, Redirect, useHistory } from "react-router-dom";
 //import logo from './logo.svg';
