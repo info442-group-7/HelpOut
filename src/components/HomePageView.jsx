@@ -1,8 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
 import '../App.css'
-import '../test.css';
-
 
 const HomePageView = (props) => {
     return (

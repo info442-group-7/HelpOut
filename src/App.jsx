@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Layout, Menu, Dropdown } from 'antd';
+import styles from './App.css';
+import './test.css';
 ///import Dashboard from './containers/Dashboard/Dashboard';
 import SuggestedTasks from './components/SuggestedTasks/SuggestedTasks';
 import ClaimedTasks from './components/ClaimedTasks/ClaimedTasksView';
@@ -15,8 +17,10 @@ import HomeView from './components/HomeView';
 import SignUpView from './components/UserSignUp/UserSignUpView'
 import { DownOutlined } from '@ant-design/icons';
 import HomePageView from './components/HomePageView';
-// import styles from './App.css';
-import './test.css';
+
+import firebase from 'firebase/app';
+import 'firebase/database'; 
+
 
 
 
@@ -52,6 +56,14 @@ const App = () => {
   const isAuthenticated = () => {
     // Perform authentication logic once user handling on backend is set up
     return true
+  }
+
+  //A callback function for logging out the current user
+  const handleSignOut = () => {
+    this.setState({errorMessage:null}); //clear any old errors
+
+    /* TODO: sign out user here */
+    firebase.auth().signOut();
   }
 
   return (
