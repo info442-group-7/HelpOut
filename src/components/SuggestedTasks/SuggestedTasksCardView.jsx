@@ -40,28 +40,6 @@ class SuggestedTasksCardView extends Component {
     }
 
     componentDidMount() {
-        firebase.auth().onAuthStateChanged(user => {
-            var givenUserID;
-            if (user) {
-                givenUserID = user.uid;
-                this.setState({currentUser: givenUserID})
-                console.log(this.state.currentUser)
-
-                this.usersRef = firebase.database().ref('USER').child(this.state.currentUser);
-                this.usersRef.on('value', (snapshot) => {
-                    let value = snapshot.val();
-                    this.setState({userZip: value.USER_ZIP_CODE})
-                    console.log('userZip is ' + this.state.userZip)
-                })
-
-
-            } else{
-                console.log('not logged in')
-                this.setState({currentUser:null})
-            }
-        });
-
-          
 
         this.requestsRef = firebase.database().ref('REQUEST');
         this.requestsRef.on('value', (snapshot) => {
@@ -117,7 +95,7 @@ class SuggestedTasksCardView extends Component {
 
         // map a random set of 3? and then when u click 3 more you can just call this again. 
         let requestItems = mappedKeys.map((requestObj) => {
-            if(requestObj.REQUEST_ZIP_CODE == this.state.userZip) {
+            if(requestObj.REQUEST_ZIP_CODE == this.props.userZip) {
                 return <div className="col"><SuggestedTask task={requestObj} /></div>
             } else {
                 return; //show no requests if none are in?
