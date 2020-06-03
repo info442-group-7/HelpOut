@@ -38,13 +38,35 @@ const CreateNewRequestView = () => {
           currentUserId = user.uid;
           setID(currentUserId);
         // User is signed in.
+        firebase.database().ref("USER").child(currentUserId).once('value', function(snapshot){
+          let user = snapshot.val();
+          setFName(user.USER_FNAME);
+          setLName(user.USER_LNAME);
+          setPhoneNumber(user.USER_PHONE_NUMBER);
+          // userTest = user;
+          // setRequester(user);
+          // console.log(user)
+          // console.log('user test is ' + userTest)
+          // console.log ('user is ' + requesterUser.USER_FNAME)
+          // console.log ('user is ' + user.USER_FNAME)
+          // console.log('user type is + ' + user.type)
+          // console.log()
+    
+        });
+
       } else {
         // No user is signed in.
         console.log("user is not logged in!")
         currentUserId = '';
       }
   });
+
+
   })
+
+  const [firstName, setFName] = useState('');
+  const [lastName, setLName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const history = useHistory();
 
@@ -54,6 +76,7 @@ const CreateNewRequestView = () => {
   };
 
   const [userID, setID] = useState('');
+
 
   // on successful submission, creates modal 
   const onFinish = values => {
@@ -65,40 +88,39 @@ const CreateNewRequestView = () => {
 // src: https://stackoverflow.com/questions/38768576/in-firebase-when-using-push-how-do-i-get-the-unique-id-and-store-in-my-databas
 
 
-  let requestRef = firebase.database().ref("REQUEST");
 
 
-    // var newRequestData={
-    //   REQUEST_ID: 'null',
-    //   REQUESTER_ID: userID, //eventually put userid = firebase user auth id
-    //   REQUEST_DATE: new Date().toLocaleString(),
-    //   REQUEST_DESCRIPTION: values.details,
-    //   REQUEST_STATUS: "incomplete", // to start
-    //   REQUEST_TIME: 'mock - add date function here',
-    //   REQUEST_TITLE: values.title,
-    //   USER_ID: '', //ONCE SOMEONe accepts, this is updated
-    //   TASK_ID: '' // once someone accepts, this is updated
-    // }
+
+    let requesterRef = firebase.database().ref("REQUESTER");
+      requesterRef.push({
+        REQUEST_ADDRESS: values.address,
+        REQUESTER_ZIP_CODE: values.zip,
+        REQUESTER_FNAME: firstName,
+        REQUESTER_LNAME: lastName,
+        REQUESTER_PHONE_NUMBER: phoneNumber
+
+      })
+
+    
+    
+
+    let requestRef = firebase.database().ref("REQUEST");
+
 
     var pushRef = requestRef.push();
     var key = pushRef.key;
     pushRef.set({
-      REQUEST_ID: 'null',
-      REQUESTER_ID: userID, //eventually put userid = firebase user auth id
+      REQUESTER_ID: userID, 
       REQUEST_DATE: new Date().toLocaleString(),
       REQUEST_DESCRIPTION: values.details,
       REQUEST_STATUS: "incomplete", // to start
       REQUEST_TIME: 'mock - add date function here',
       REQUEST_TITLE: values.title,
+      REQUEST_ZIP_CODE: values.zip,
       USER_ID: '', //ONCE SOMEONe accepts, this is updated
       TASK_ID: '',
       REQUEST_ID: key 
     })
-
-  //  var newRef = requestRef.push(newRequestData);
-  //  var newID = newRef.key;
-  //  console.log('id is = ' + newID)
-  //  requestRef.child(newID).set({REQUEST_ID: newID})
 
     success();
   };
