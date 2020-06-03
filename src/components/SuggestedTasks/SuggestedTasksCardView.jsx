@@ -78,14 +78,16 @@ class SuggestedTasksCardView extends Component {
         // map a random set of 3? and then when u click 3 more you can just call this again. 
         let requestItems = mappedKeys.map((requestObj) => {
             // if(requestObj = )
-            return <SuggestedTask task={requestObj} />
+            return <div className="col"><SuggestedTask task={requestObj} /></div>
         
         });
 
         return (
-            <div className="container">
+            <div className='flex-grid'>
+
+
                 {requestItems}
-            </div>
+                </div>
         );
     }
 
@@ -146,7 +148,7 @@ class SuggestedTask extends Component {
 
         // need to do something about user id / requester id. get it and cross reference their info from REQUESTER and USER
         return (
-            <Card className="cardStyle" style={{ width: '350px', height: "350px", boxShadow: "0 8px 6px -6px #aaaaaa", lineHeight: "24px", display: 'flex', flexDirection: 'column' }}>
+            <Card className="cardStyle" style={{ width: '350px', height: "350px", boxShadow: "0 8px 6px -6px #aaaaaa", lineHeight: "24px" }}>
                 <h5 className="cardTitle">{task.REQUEST_TITLE}</h5>
                 <hr className="cardLineBreak"></hr>
                 <div className="cardDesDiv">

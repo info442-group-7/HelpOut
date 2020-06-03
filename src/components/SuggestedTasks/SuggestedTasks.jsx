@@ -46,15 +46,11 @@ class SuggestedTasksView extends React.Component {
     return (
       <div style={{ marginLeft: '5vw', marginRight: '7vw' }} >
         <div className="headerDiv"><h1 className="cardHeader">Tasks in My Area</h1></div>
-        <div className="flex-grid">
+        
           {/* {this.state.total.map((value) => */}
-            <div>
-              <div className="col">
-                <SuggestedTasksCardView />
-              </div>
-            </div>
+\                <SuggestedTasksCardView />
           {/* )} */}
-        </div>
+        
 
         <div style={{ display: "flex", justifyContent: "center", padding: "2%" }}>
           <Button type="primary" onClick={this.onClick} style={{
