@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ClaimedTasksCardView from "./ClaimedTasksCardView";
+import { Button } from 'antd';
+
 import '../../App.css'
 
 class ClaimedTasksView extends React.Component {
@@ -47,8 +49,12 @@ class ClaimedTasksView extends React.Component {
        
       
         <div style={{ display: 'flex' }}>
-          <button className="bar-button" type="primary" a rel="noopener noreferrer" href="/SuggestedTasks" >Find more tasks </button>
-        </div>  </div>
+            <Button type="primary" style={{
+              marginLeft: '12vw',
+              fontSize: '30px', marginTop: '50px', paddingBottom: '50px', paddingTop: '18px', size: 'large', paddingLeft: '30px', paddingRight: '30px', textAlign: 'center'
+            }}a rel="noopener noreferrer" href="/SuggestedTasks">Find new tasks </Button></div>
+        
+        </div>
      
     );
   }

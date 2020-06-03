@@ -164,6 +164,9 @@ class ClaimedTaskView extends Component {
     }
 
     render() {
+        let request = this.props.request;
+        let task = this.props.task;
+        let requester = this.props.requester;
 
         function testUser () {
             firebase.auth().onAuthStateChanged(function(user) {
@@ -185,7 +188,7 @@ class ClaimedTaskView extends Component {
             </Tooltip>
         )
         const succeed = (
-            <div>(253) 310-3409<br></br></div>
+            <div style={{display:'flex', flexDirection: 'column'}}>Phone Number: { requester.REQUESTER_PHONE_NUMBER } <br/> Address:  { requester.REQUESTER_STREET_ADDRESS }<br></br></div>
         )
         const notsucceed = (
             <div>
@@ -201,9 +204,7 @@ class ClaimedTaskView extends Component {
                 </Tooltip>
             </div>
         )
-        let request = this.props.request;
-        let task = this.props.task;
-        let requester = this.props.requester;
+        
         testUser()
 
         if (this.state.clicked) {
