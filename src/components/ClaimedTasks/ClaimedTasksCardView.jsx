@@ -7,13 +7,9 @@ import { Tooltip } from 'antd';
 import firebase from 'firebase/app';
 import 'firebase/database';
 
-
-
 const abandon = <span>Give up...</span>;
 const complete = <span>Done!</span>;
 const more = <span>More...</span>;
-
-
 
 class ClaimedTasksCardView extends Component {
 
@@ -63,7 +59,7 @@ class ClaimedTasksCardView extends Component {
     }
 
     render() {
-        if (!this.state.tasks) return null; // or return whatever display u want. maybe a message that says no suggestions ??
+        if (!this.state.tasks) return null; 
 
         let taskKeys = Object.keys(this.state.tasks);
         let mappedKeys = taskKeys.map((key) => {
@@ -80,18 +76,22 @@ class ClaimedTasksCardView extends Component {
         });
 
         let taskItems = mappedKeys.map((taskObj) => {
-            if (this.state.currentUser == taskObj.USER_ID) {
+            let requestValue = ''
+            if (this.state.currentUser == taskObj.USER_ID && taskObj.TASK_STATUS == 'incomplete') {
+                console.log(taskObj.TASK_STATUS)
+
                 mappedRequestKeys.map((requestObj) => {
-                    if (requestObj.REQUEST_ID == taskObj.TASK_ID) {
-                        console.log(requestObj)
-                        return <ClaimedTaskView task={requestObj} />
+                    if (requestObj.TASK_ID == taskObj.TASK_ID) {
+                        requestValue= requestObj
                     }
                 })
-            }});
+                return <div className='col'> <ClaimedTaskView request={requestValue} task={taskObj}/></div>
+            }
+        });
       
 
         return (
-            <div className="container">
+            <div className="flex-grid">
                 { taskItems }
             </div>
         );
@@ -102,9 +102,10 @@ class ClaimedTasksCardView extends Component {
 class ClaimedTaskView extends Component {
     constructor(props) {
         super(props);
-        this.state = { clicked: true, };
+        this.state = { clicked: true, taskid: '', task: this.props.task };
         this.onClick = this.onClick.bind(this);
         this.handleClick.bind(this);
+        this.abandonClick = this.abandonClick.bind(this)
     }
     handleClick() {
         this.setState(previousState => {
@@ -115,13 +116,36 @@ class ClaimedTaskView extends Component {
     }
     onClick() {
         this.setState({
-            clicked: false
+            clicked: false,
         });
+
+        this.tasksRef = firebase.database().ref('CLAIMED_TASK');
+        firebase.database().ref('CLAIMED_TASK').child('/' + this.state.task.TASK_ID + '/')
+        .update({TASK_STATUS: 'complete' });
+
+        this.requestsRef = firebase.database().ref('REQUEST');
+        firebase.database().ref('REQUEST').child('/' + this.state.task.REQUEST_ID + '/')
+        .update({REQUEST_STATUS: 'complete' });        
     }
+
+    abandonClick() {
+        
+        this.requestsRef = firebase.database().ref('REQUEST');
+        firebase.database().ref('REQUEST').child('/' + this.state.task.REQUEST_ID + '/')
+        .update({TASK_ID: '' });
+        
+        this.tasksRef = firebase.database().ref('CLAIMED_TASK');
+        firebase.database().ref('CLAIMED_TASK').child('/' + this.state.task.TASK_ID + '/')
+        .remove()
+
+        
+
+    }
+
     render() {
         const Results = () => (
             <Tooltip placement="bottom" title={abandon}>
-                <Button onClick={this.onClick} ><CloseCircleTwoTone twoToneColor="#eb2f96" style={{ fontSize: '40px' }} /></Button>
+                <Button onClick={this.abandonClick} ><CloseCircleTwoTone twoToneColor="#eb2f96" style={{ fontSize: '40px' }} /></Button>
             </Tooltip>
         )
         const succeed = (
@@ -141,6 +165,7 @@ class ClaimedTaskView extends Component {
                 </Tooltip>
             </div>
         )
+        let request = this.props.request;
         let task = this.props.task;
 
         if (this.state.clicked) {
@@ -148,10 +173,10 @@ class ClaimedTaskView extends Component {
                 <div style={{ marginRight: '50%' }}>
 
                     <Card className="cardStyle" style={{ width: '350px', height: "350px", boxShadow: "0 8px 6px -6px #aaaaaa", lineHeight: "24px", display: 'flex', flexDirection: 'column' }}>
-                        <h5 className="cardTitle"> { task.REQUEST_TITLE }</h5>
+                        <h5 className="cardTitle"> { request.REQUEST_TITLE }</h5>
                         <hr className="cardLineBreak"></hr>
                         <div className="cardDesDiv">
-                            <p className="cardDescription">{ task.REQUEST_DESCRIPTION } </p>
+                            <p className="cardDescription">{ request.REQUEST_DESCRIPTION } </p>
                         </div>
                         <p className="cardRequester">Requester's name</p>
                         <p className="cardRequested">Accepted 10 days ago</p>

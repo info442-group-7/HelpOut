@@ -41,19 +41,15 @@ class ClaimedTasksView extends React.Component {
     return (
       <div style={{ marginLeft: '5vw', marginRight: '7vw' }} >
         <div className="headerDiv"><h1 className="cardHeader">Claimed Tasks</h1></div>
-        <div className="flex-grid">
-          {this.state.total.map((value) =>
-            <div>
-              <div className="col">
+    
                 <ClaimedTasksCardView />
-              </div>
-            </div>
-          )}
-        </div>
+        
+       
+      
         <div style={{ display: 'flex' }}>
           <button className="bar-button" type="primary" a rel="noopener noreferrer" href="/SuggestedTasks" >Find more tasks </button>
-        </div>
-      </div>
+        </div>  </div>
+     
     );
   }
 }
