@@ -20,19 +20,23 @@ const HomePageView = (props) => {
                             fontSize: '3vmin',
                             marginTop: '1vmin',
                             paddingBottom: '6vmin',
-                            paddingTop: '1vmin',
+                            paddingTop: '2vmin',
                             width: '110%',
-                            textAlign: 'center'
-                        }}>Claimed tasks </Button>
+                            textAlign: 'center',
+                            borderRadius: '5px',
+                            fontWeight: 'bolder'
+                        }} href="ClaimedTasks" >Claimed tasks </Button>
 
                         <Button className="bar-button" type="primary" style={{
                             fontSize: '3vmin',
                             marginTop: '1vmin',
                             paddingBottom: '6vmin',
-                            paddingTop: '1vmin',
+                            paddingTop: '2vmin',
                             width: '110%',
-                            textAlign: 'center'
-                        }}>Find more tasks</Button>
+                            textAlign: 'center',
+                            borderRadius: '5px',
+                            fontWeight: 'bolder'
+                        }} href="SuggestedTasks">Find more tasks</Button>
                     </div>
                 </div>
                 <div className='helpOthers'>
@@ -42,20 +46,22 @@ const HomePageView = (props) => {
                             <Button className="bar-button" type="primary" style={{
                                 fontSize: '3vmin',
                                 marginTop: '1vmin',
-                                marginRight: '1vmin',
                                 paddingBottom: '6vmin',
-                                paddingTop: '1vmin',
+                                paddingTop: '2vmin',
                                 width: '110%',
-                                textAlign: 'center'
-                            }}>My requests </Button>
+                                textAlign: 'center',
+                                borderRadius: '5px',
+                                fontWeight: 'bolder'
+                            }} href="MyRequests">My requests </Button>
                         <Button className="bar-button" type="primary" style={{
                             fontSize: '3vmin',
                             marginTop: '1vmin',
                             paddingBottom: '6vmin',
                             paddingTop: '1vmin',
                             width: '110%',
-                            paddingRight: '3vmin',
-                            textAlign: 'center'
+                            textAlign: 'center',
+                            borderRadius: '5px',
+                            fontWeight: 'bolder'
                         }}>Resources</Button>
 </div>
                         <Button className="bar-button" type="primary" style={{
