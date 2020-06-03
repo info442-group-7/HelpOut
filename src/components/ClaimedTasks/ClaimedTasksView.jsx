@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ClaimedTasksCardView from "./ClaimedTasksCardView";
+import { Button } from 'antd';
+
 import '../../App.css'
 
 class ClaimedTasksView extends React.Component {
@@ -41,19 +43,19 @@ class ClaimedTasksView extends React.Component {
     return (
       <div style={{ marginLeft: '5vw', marginRight: '7vw' }} >
         <div className="headerDiv"><h1 className="cardHeader">Claimed Tasks</h1></div>
-        <div className="flex-grid">
-          {this.state.total.map((value) =>
-            <div>
-              <div className="col">
+    
                 <ClaimedTasksCardView />
-              </div>
-            </div>
-          )}
-        </div>
+        
+       
+      
         <div style={{ display: 'flex' }}>
-          <button className="bar-button" type="primary" a rel="noopener noreferrer" href="/SuggestedTasks" >Find more tasks </button>
+            <Button type="primary" style={{
+              marginLeft: '12vw',
+              fontSize: '30px', marginTop: '50px', paddingBottom: '50px', paddingTop: '18px', size: 'large', paddingLeft: '30px', paddingRight: '30px', textAlign: 'center'
+            }}a rel="noopener noreferrer" href="/SuggestedTasks">Find new tasks </Button></div>
+        
         </div>
-      </div>
+     
     );
   }
 }

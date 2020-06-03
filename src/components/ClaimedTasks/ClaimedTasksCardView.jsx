@@ -7,13 +7,9 @@ import { Tooltip } from 'antd';
 import firebase from 'firebase/app';
 import 'firebase/database';
 
-
-
 const abandon = <span>Give up...</span>;
 const complete = <span>Done!</span>;
 const more = <span>More...</span>;
-
-
 
 class ClaimedTasksCardView extends Component {
 
@@ -21,7 +17,7 @@ class ClaimedTasksCardView extends Component {
         super(props);
         this.state = {
             clicked: true,
-            currentUser: 'kelsie', tasks: [], requests: []
+            currentUser: 'kelsie', tasks: [], requests: [], requester: []
         };
         this.onClick = this.onClick.bind(this);
         this.handleClick.bind(this);
@@ -38,6 +34,12 @@ class ClaimedTasksCardView extends Component {
         this.requestsRef.on('value', (snapshot) => {
             let value = snapshot.val();
             this.setState({ requests: value });
+        });
+
+        this.requesterRef = firebase.database().ref('REQUESTER');
+        this.requesterRef.on('value', (snapshot) => {
+            let value = snapshot.val();
+            this.setState({ requester: value });
         });
     }
 
@@ -63,7 +65,7 @@ class ClaimedTasksCardView extends Component {
     }
 
     render() {
-        if (!this.state.tasks) return null; // or return whatever display u want. maybe a message that says no suggestions ??
+        if (!this.state.tasks) return null; 
 
         let taskKeys = Object.keys(this.state.tasks);
         let mappedKeys = taskKeys.map((key) => {
@@ -79,19 +81,38 @@ class ClaimedTasksCardView extends Component {
             return requestObj;
         });
 
+        let requesterKeys = Object.keys(this.state.requester);
+        let mappedRequesterKeys = requesterKeys.map((key) => {
+            let requesterObj = this.state.requester[key];
+            requesterObj.id = key;
+            return requesterObj;
+        });
+
         let taskItems = mappedKeys.map((taskObj) => {
-            if (this.state.currentUser == taskObj.USER_ID) {
+            let requestValue = ''
+            let requesterValue = ''
+            if (this.state.currentUser == taskObj.USER_ID && taskObj.TASK_STATUS == 'incomplete') {
+                console.log(taskObj.TASK_STATUS)
+
                 mappedRequestKeys.map((requestObj) => {
-                    if (requestObj.REQUEST_ID == taskObj.TASK_ID) {
-                        console.log(requestObj)
-                        return <ClaimedTaskView task={requestObj} />
+                    if (requestObj.TASK_ID == taskObj.TASK_ID) {
+                        requestValue= requestObj
                     }
                 })
-            }});
+
+                mappedRequesterKeys.map((requesterObj) => {
+                    if (requesterObj.REQUESTER_ID == taskObj.REQUESTER_ID) {
+                        requesterValue= requesterObj
+                    }
+                })
+
+                return <div className='col'> <ClaimedTaskView request={requestValue} task={taskObj} requester={requesterValue}/></div>
+            }
+        });
       
 
         return (
-            <div className="container">
+            <div className="flex-grid">
                 { taskItems }
             </div>
         );
@@ -102,9 +123,10 @@ class ClaimedTasksCardView extends Component {
 class ClaimedTaskView extends Component {
     constructor(props) {
         super(props);
-        this.state = { clicked: true, };
+        this.state = { clicked: true, taskid: '', task: this.props.task };
         this.onClick = this.onClick.bind(this);
         this.handleClick.bind(this);
+        this.abandonClick = this.abandonClick.bind(this)
     }
     handleClick() {
         this.setState(previousState => {
@@ -115,17 +137,58 @@ class ClaimedTaskView extends Component {
     }
     onClick() {
         this.setState({
-            clicked: false
+            clicked: false,
         });
+
+        this.tasksRef = firebase.database().ref('CLAIMED_TASK');
+        firebase.database().ref('CLAIMED_TASK').child('/' + this.state.task.TASK_ID + '/')
+        .update({TASK_STATUS: 'complete' });
+
+        this.requestsRef = firebase.database().ref('REQUEST');
+        firebase.database().ref('REQUEST').child('/' + this.state.task.REQUEST_ID + '/')
+        .update({REQUEST_STATUS: 'complete' });        
     }
+
+    abandonClick() {
+        
+        this.requestsRef = firebase.database().ref('REQUEST');
+        firebase.database().ref('REQUEST').child('/' + this.state.task.REQUEST_ID + '/')
+        .update({TASK_ID: '' });
+        
+        this.tasksRef = firebase.database().ref('CLAIMED_TASK');
+        firebase.database().ref('CLAIMED_TASK').child('/' + this.state.task.TASK_ID + '/')
+        .remove()
+
+        
+
+    }
+
     render() {
+        let request = this.props.request;
+        let task = this.props.task;
+        let requester = this.props.requester;
+
+        function testUser () {
+            firebase.auth().onAuthStateChanged(function(user) {
+              if (user) {
+                // User is signed in.
+                console.log('signed in')
+                console.log(user.uid)
+              } else {
+                // No user is signed in.
+                console.log('not signed in')
+              }
+            });
+            console.log("you've reached function testUseryay!")
+          } 
+
         const Results = () => (
             <Tooltip placement="bottom" title={abandon}>
-                <Button onClick={this.onClick} ><CloseCircleTwoTone twoToneColor="#eb2f96" style={{ fontSize: '40px' }} /></Button>
+                <Button onClick={this.abandonClick} ><CloseCircleTwoTone twoToneColor="#eb2f96" style={{ fontSize: '40px' }} /></Button>
             </Tooltip>
         )
         const succeed = (
-            <div>(253) 310-3409<br></br></div>
+            <div style={{display:'flex', flexDirection: 'column'}}>Phone Number: { requester.REQUESTER_PHONE_NUMBER } <br/> Address:  { requester.REQUESTER_STREET_ADDRESS }<br></br></div>
         )
         const notsucceed = (
             <div>
@@ -141,20 +204,21 @@ class ClaimedTaskView extends Component {
                 </Tooltip>
             </div>
         )
-        let task = this.props.task;
+        
+        testUser()
 
         if (this.state.clicked) {
             return (
                 <div style={{ marginRight: '50%' }}>
 
                     <Card className="cardStyle" style={{ width: '350px', height: "350px", boxShadow: "0 8px 6px -6px #aaaaaa", lineHeight: "24px", display: 'flex', flexDirection: 'column' }}>
-                        <h5 className="cardTitle"> { task.REQUEST_TITLE }</h5>
+                        <h5 className="cardTitle"> { request.REQUEST_TITLE }</h5>
                         <hr className="cardLineBreak"></hr>
                         <div className="cardDesDiv">
-                            <p className="cardDescription">{ task.REQUEST_DESCRIPTION } </p>
+                            <p className="cardDescription">{ request.REQUEST_DESCRIPTION } </p>
                         </div>
-                        <p className="cardRequester">Requester's name</p>
-                        <p className="cardRequested">Accepted 10 days ago</p>
+                        <p className="cardRequester">{ requester.REQUESTER_FNAME }  { requester.REQUESTER_LNAME }</p>
+                        <p className="cardRequested">Accepted on {task.CLAIMED_TIME }</p>
                         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
                             <div> {this.state.succeed ? null : <Results />}</div>
                             <div onClick={this.handleClick.bind(this)}> {this.state.succeed ? succeed : notsucceed} </div>
