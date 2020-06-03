@@ -144,6 +144,9 @@ class SuggestedTask extends Component {
 
         let task = this.props.task;
 
+        
+
+
         // need to do something about user id / requester id. get it and cross reference their info from REQUESTER and USER
         return (
             <Card className="cardStyle" style={{ width: '350px', height: "350px", boxShadow: "0 8px 6px -6px #aaaaaa", lineHeight: "24px", display: 'flex', flexDirection: 'column' }}>

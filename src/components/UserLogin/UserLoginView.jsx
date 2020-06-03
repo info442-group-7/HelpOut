@@ -30,6 +30,7 @@ const UserLoginView = () => {
     console.log('Success:', values);
     const authUserResponse = await firebase.app().auth().signInWithEmailAndPassword(values.email, values.password)
     console.log(authUserResponse);
+    
   };
 
   const onFinishFailed = errorInfo => {
