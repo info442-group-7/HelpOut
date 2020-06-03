@@ -62,13 +62,12 @@ class MyRequestsView extends React.Component {
         <div className="headerDiv">
           <h1 className="cardHeader">My Requests</h1>
         </div>
-        <div style={{ marginLeft: "17vmin" }}>
-          <Row gutter={{ sm: 2, lg: 48 }} justify="start" >
-              <Col className="gutter-row" >
+        <div style={{ }}>
+        
                 <MyRequestsCardView />
-              </Col>
+          
             {this.state.succeed ? succeed : notsucceed}
-          </Row>
+     
           <div style={{ display: 'flex' }}>
             <Button type="primary" style={{
               marginLeft: '2vmin',

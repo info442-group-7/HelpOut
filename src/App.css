@@ -133,15 +133,15 @@ cardStyle  {
 .col {
   display: flex;
   width: 25%;
-  margin-left: 5vmin;
+  margin-left: 25px;
   margin-bottom: 5vmin;
 }
 
-@media (max-width: 930px) {
+@media (max-width: 1600px) {
   .col {
     display: flex;
-    width: 30vw;
-    margin-left: 8vmin;
+    width: 33%;
+    margin-left: 25px;
     margin-bottom: 5vmin;
   }
 }
@@ -149,7 +149,8 @@ cardStyle  {
   display: flex;
   flex-flow: wrap;
   align-content: space-between;
-  justify-content: center;
+  justify-content: start;
+  margin-left: 10%;
 }
 
 .flex-grid::after { content: "";flex: 0 0 50%;max-width: 950px;}
@@ -162,11 +163,12 @@ justify-content: start;
 
 
 
-@media (max-width: 800px) {
+@media (max-width: 1200px) {
   .flex-grid {
     display: flex;
   flex-flow: wrap;
   flex-direction: column;
+  justify-content: center;
  
   }
 }
