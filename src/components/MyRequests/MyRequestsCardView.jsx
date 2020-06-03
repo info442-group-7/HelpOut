@@ -114,6 +114,7 @@ class UserRequestCard extends Component {
         this.state = { clicked: true };
         this.onClick = this.onClick.bind(this);
         this.handleClick.bind(this);
+        this.deleteRequest.bind(this);
     }
 
     handleClick() {
@@ -125,16 +126,24 @@ class UserRequestCard extends Component {
     }
 
     onClick() {
+        this.deleteRequest();
+
         this.setState({
             clicked: false
         });
+        console.log('request deleted!')
     }
 
 
-    render () {
+    // will delete request from database
+     deleteRequest() {
+        let requestObj = this.props.request;
 
-        
-        
+        return firebase.database().ref('REQUEST').child(requestObj.id).remove();
+     }
+
+
+    render () {
         
         const Results = () => (
             <Tooltip placement="bottom" title={deletetask}>
