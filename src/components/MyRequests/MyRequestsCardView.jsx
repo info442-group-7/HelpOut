@@ -18,6 +18,7 @@ class MyRequestsCardView extends Component {
         super(props);
         this.state = { clicked: true, 
             currentUser: null,
+            requests: [],
             count: 0
         };
         this.onClick = this.onClick.bind(this);
@@ -48,6 +49,12 @@ class MyRequestsCardView extends Component {
         this.requestsRef.on('value', (snapshot) => {
             let value = snapshot.val();
             this.setState({requests: value});
+        });
+
+        this.requesterRef = firebase.database().ref('REQUESTER');
+        this.requesterRef.on('value', (snapshot) => {
+            let value = snapshot.val();
+            this.setState({ requester: value });
         });
     }
 
@@ -114,6 +121,7 @@ class UserRequestCard extends Component {
         this.state = { clicked: true };
         this.onClick = this.onClick.bind(this);
         this.handleClick.bind(this);
+        this.deleteRequest.bind(this);
     }
 
     handleClick() {
@@ -125,16 +133,24 @@ class UserRequestCard extends Component {
     }
 
     onClick() {
+        this.deleteRequest();
+
         this.setState({
             clicked: false
         });
+        console.log('request deleted!')
     }
 
 
-    render () {
+    // will delete request from database
+     deleteRequest() {
+        let requestObj = this.props.request;
 
-        
-        
+        return firebase.database().ref('REQUEST').child(requestObj.id).remove();
+     }
+
+
+    render () {
         
         const Results = () => (
             <Tooltip placement="bottom" title={deletetask}>
@@ -155,8 +171,8 @@ class UserRequestCard extends Component {
                     <div className="cardDesDiv">
                     <p className="cardDescription">{request.REQUEST_DESCRIPTION} </p>
                         </div>
-                    <p className="cardRequester">Requester's name</p>
-                    <p className="cardRequested">Accepted on {request.REQUEST_DATE}</p>
+                    {/* <p className="cardRequester">Requester's name</p> */}
+                    <p className="cardRequested">Requested on {request.REQUEST_DATE}</p>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
                         <div> {this.state.succeed ? null : <Results />}</div>
                         <Tooltip placement="bottom" title={edit}>
