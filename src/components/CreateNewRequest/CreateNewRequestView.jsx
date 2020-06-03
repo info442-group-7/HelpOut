@@ -76,7 +76,8 @@ const CreateNewRequestView = () => {
       REQUEST_STATUS: "incomplete", // to start
       REQUEST_TIME: 'mock - add date function here',
       REQUEST_TITLE: values.title,
-      USER_ID: '' //ONCE SOMEONe accepts, this is updated
+      USER_ID: '', //ONCE SOMEONe accepts, this is updated
+      TASK_ID: '' // once someone accepts, this is updated
     }
 
     requestRef.push(newRequestData);
