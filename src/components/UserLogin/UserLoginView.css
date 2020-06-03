@@ -25,3 +25,34 @@
     width: 30%;
 }
 
+button{
+  border-radius: 5px !important;
+  font-weight: bolder !important;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+h1.homePageSubH{
+  font-weight: bolder;
+}
+
+#homepage-descrip {
+  font-size: 22px !important;
+  margin-bottom: auto !important;
+}
+.cardTitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+}
+
+#complex-form_street {
+  margin-bottom: 10px;
+  margin-right: 5px;
+}
+
+.zipCodeInput {
+  width: 100px;
+  border-bottom: 3px solid #666 !important;
+}
