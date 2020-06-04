@@ -185,7 +185,7 @@ class SuggestedTask extends Component {
         })
 
         firebase.database().ref('CLAIMED_TASK').child(key)
-        .update({TASK_STATUS: 'complete', TASK_ID: key });
+        .update({TASK_STATUS: 'incomplete', TASK_ID: key });
 
         //mark request as claimed, set task id
         this.requestsRef = firebase.database().ref('REQUEST');

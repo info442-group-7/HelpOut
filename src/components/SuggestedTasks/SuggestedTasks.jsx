@@ -97,23 +97,7 @@ class SuggestedTasksView extends React.Component {
           {/* {this.state.total.map((value) => */}
 \                <SuggestedTasksCardView  userZip={this.state.userZip} currentUser={this.state.currentUser} />
           {/* )} */}
-        
 
-        <div style={{ display: "flex", justifyContent: "center", padding: "2%" }}>
-          <Button type="primary" onClick={this.onClick} style={{
-            backgroundColor: "#dedede",
-            borderColor: "black",
-            color: "black",
-            width: "250 px",
-            height: "50px",
-            margin: "0 auto",
-            padding: "40",
-            display: "table - cell",
-            verticalAlign: "middle",
-          }}
-            ghost> MORE </Button>
-          <br></br>
-        </div>
         {/* <form onSubmit={this.handleSubmit}>
         <label>
         My zip code is: 
