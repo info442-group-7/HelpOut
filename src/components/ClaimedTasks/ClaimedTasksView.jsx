@@ -41,7 +41,7 @@ class ClaimedTasksView extends React.Component {
 
   render() {
     return (
-      <div style={{  }} >
+      <div>
         <div className="headerDiv"><h1 className="cardHeader">Claimed Tasks</h1></div>
                 <ClaimedTasksCardView />
         <div style={{ display: 'flex' }}>

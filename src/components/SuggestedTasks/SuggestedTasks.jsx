@@ -83,7 +83,7 @@ class SuggestedTasksView extends React.Component {
         <div 
           id="zipcode-search">
           <Search
-            style={{float:'center'}}
+            style={{float:'center', marginRight: '10px'}}
             placeholder={this.state.userZip}
             enterButton="Search"
             size="large"
@@ -95,7 +95,7 @@ class SuggestedTasksView extends React.Component {
 
         
           {/* {this.state.total.map((value) => */}
-\                <SuggestedTasksCardView  userZip={this.state.userZip} currentUser={this.state.currentUser} />
+          <SuggestedTasksCardView  userZip={this.state.userZip} currentUser={this.state.currentUser} />
           {/* )} */}
 
         {/* <form onSubmit={this.handleSubmit}>
