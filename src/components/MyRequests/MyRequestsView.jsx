@@ -44,9 +44,8 @@ class MyRequestsView extends React.Component {
   render() {
     const succeed = (
       this.state.total.map((value) =>
-        <Col className="gutter-row" span={5} key={value}>
           <MyOldRequests />
-        </Col>)
+        )
     )
     const notsucceed = (
       <div>
