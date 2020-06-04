@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Layout, Menu, Dropdown } from 'antd';
+import { Layout, Menu, Dropdown, Button } from 'antd';
 import styles from './App.css';
 import './test.css';
 ///import Dashboard from './containers/Dashboard/Dashboard';
@@ -22,6 +22,7 @@ import firebase from 'firebase/app';
 import 'firebase/database'; 
 import { AuthProvider } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
+import 'firebase/database'; 
 
 
 
@@ -29,6 +30,13 @@ import PrivateRoute from "./PrivateRoute";
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
+
+const handleSignOut = () => {
+    
+  /* TODO: sign out user here */
+  firebase.auth().signOut();
+  console.log('logged out!')
+}
 
 
 
@@ -57,6 +65,7 @@ const menuRequests = (
 const menuWelcome = (
   <Menu>
     <Menu.Item>
+    <Button onClick={handleSignOut}> Logout </Button>
 
     </Menu.Item>
   </Menu>
@@ -81,7 +90,7 @@ const App = () => {
       <Layout style={{ minHeight: '100vh' }}>
         <Layout>
           <Menu theme="light" mode="horizontal" style={{ boxShadow: "0px 0px 9px 3px rgba(41,41,41,.25)", height: "10vh", paddingTop: "1.6vh", alignItems: "center" }} defaultSelectedKeys={['2']}>
-            <Menu.Item key="1" style={{ alignItems: "center" }}><span> <Menu.Item key="1"><span><img src={logo} alt="Smiley face" height="50" /></span><Link to="/" />
+            <Menu.Item key="1" style={{ alignItems: "center" }}><span> <Menu.Item key="1"><span><img src={logo} alt="Smiley face" height="50" /></span><Link to="/HomePageView" />
             </Menu.Item></span>
             </Menu.Item>
             <Menu.Item key="2">
@@ -99,7 +108,11 @@ const App = () => {
             </Menu.Item>
             <Menu.Item key="4">Additional Resources
                 <Link to="/AdditionalResourcesView" /></Menu.Item>
-            <Menu.Item key="5" style={{ float: "right" }}>Welcome Back!
+            <Menu.Item key="5" style={{ float: "right" }}><Dropdown overlay={menuWelcome}>
+              <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                Welcome Back!     <DownOutlined />
+              </a>
+            </Dropdown>
                 </Menu.Item>
           </Menu>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#F1F4F6', minHeight: 280 }}>

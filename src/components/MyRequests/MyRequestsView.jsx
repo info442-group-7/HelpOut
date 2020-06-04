@@ -71,7 +71,7 @@ class MyRequestsView extends React.Component {
             <Button type="primary" style={{
               marginLeft: '2vmin',
               fontSize: '3vmin', marginTop: '4vmin', paddingBottom: '6vmin', paddingTop: '1', size: 'large', paddingLeft: '6vmin', paddingRight: '8vmin', textAlign: 'center'
-            }}>Create Request </Button>
+            }}href="CreateRequest">Create Request </Button>
           </div>
         </div>
       </div>
