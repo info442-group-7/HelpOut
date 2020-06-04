@@ -114,7 +114,7 @@ class UserRequestCard extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { clicked: true, taskID: null, requestStatus: null  };
+        this.state = { clicked: true, taskID: null, requestStatus: ''  };
         this.onClick = this.onClick.bind(this);
         this.handleClick.bind(this);
         this.deleteRequest.bind(this);
@@ -163,9 +163,9 @@ class UserRequestCard extends Component {
 
 
      isComplete () {
-        if (this.state.requestStatus == 'incomplete') {
+        if (this.state.requestStatus == 'open') {
             if (this.state.taskID == "" || this.state.taskID == null) {
-                return (<p>INCOMPLETE, UNCLAIMED</p>)
+                return (<p>OPEN, UNCLAIMED</p>)
             } else {
                 return (<p>CLAIMED, IN PROGRESS</p>)
             }
@@ -203,11 +203,8 @@ class UserRequestCard extends Component {
                     <p className="cardRequested">Requested on {request.REQUEST_DATE}</p>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
                         <div> {this.state.succeed ? null : <Results />}</div>
-                        <Tooltip placement="bottom" title={edit}>
-                    <Button a rel="noopener noreferrer" href="/">
-                        <EditTwoTone style={{ fontSize: '40px' }} /> >
-                    </Button> 
-                </Tooltip>
+
+
                     </div>
                 </Card>
             </div>
