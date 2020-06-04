@@ -28,14 +28,12 @@ class ClaimedTasksCardView extends Component {
             if (user) {
                 // User is signed in.
                 console.log('signed in')
-                console.log(user.uid)
                 this.setState({ currentUser: user.uid })
 
             } else {
                 // No user is signed in.
                 console.log('not signed in')
             }
-            console.log('the current user is ' + this.state.currentUser)
 
         }.bind(this))
 
