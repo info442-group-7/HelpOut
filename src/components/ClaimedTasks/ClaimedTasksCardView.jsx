@@ -157,23 +157,23 @@ class ClaimedTaskView extends Component {
         });
 
         this.tasksRef = firebase.database().ref('CLAIMED_TASK');
-        firebase.database().ref('CLAIMED_TASK').child('/' + this.state.request.TASK_ID + '/')
+        firebase.database().ref('CLAIMED_TASK').child('/' + this.props.request.TASK_ID + '/')
         .update({TASK_STATUS: 'complete' });
 
         //mark as claimed
         this.requestsRef = firebase.database().ref('REQUEST');
-        firebase.database().ref('REQUEST').child('/' + this.state.request.REQUEST_ID + '/')
+        firebase.database().ref('REQUEST').child('/' + this.props.request.REQUEST_ID + '/')
         .update({REQUEST_STATUS: 'claimed' });        
     }
 
     abandonClick() {
 
         this.requestsRef = firebase.database().ref('REQUEST');
-        firebase.database().ref('REQUEST').child('/' + this.state.task.REQUEST_ID + '/')
+        firebase.database().ref('REQUEST').child('/' + this.props.task.REQUEST_ID + '/')
         .update({TASK_ID: '', REQUEST_STATUS:'open' });
         
         this.tasksRef = firebase.database().ref('CLAIMED_TASK');
-        firebase.database().ref('CLAIMED_TASK').child('/' + this.state.task.TASK_ID + '/')
+        firebase.database().ref('CLAIMED_TASK').child('/' + this.props.task.TASK_ID + '/')
             .remove()
 
 
