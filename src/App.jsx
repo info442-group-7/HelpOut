@@ -117,7 +117,7 @@ const App = () => {
           </Menu>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#F1F4F6', minHeight: 280 }}>
             <AuthProvider>
-            <PrivateRoute exact path="/" component={HomeView} />
+            <PrivateRoute exact path="/" component={HomePageView} />
             <PrivateRoute path="/ClaimedTasks" component={ClaimedTasks} />
             <PrivateRoute path="/AdditionalResources" component={AdditionalResourcesView} />
             <PrivateRoute path="/MyRequests" component={MyRequests} />
