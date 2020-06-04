@@ -51,7 +51,7 @@ class SuggestedTasksView extends React.Component {
   });
   }
   componentDidUpdate() {
-    this.scrollToBottom();
+    // this.scrollToBottom();
   }
 
   onClick() {
