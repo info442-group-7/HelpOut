@@ -93,11 +93,12 @@ const CreateNewRequestView = () => {
 
     let requesterRef = firebase.database().ref("REQUESTER");
       requesterRef.push({
-        REQUEST_ADDRESS: values.address,
         REQUESTER_ZIP_CODE: values.zip,
         REQUESTER_FNAME: firstName,
         REQUESTER_LNAME: lastName,
-        REQUESTER_PHONE_NUMBER: phoneNumber
+        REQUESTER_PHONE_NUMBER: phoneNumber,
+        REQUESTER_STREET_ADDRESS: values.address,
+        REQUESTER_ID: userID
 
       })
 
