@@ -151,10 +151,12 @@ class UserRequestCard extends Component {
         this.requesterRef = firebase.database().ref('REQUEST').child(requestObj.id);
         this.requesterRef.on('value', (snapshot) => {
             let value = snapshot.val();
-            this.setState({
-                taskID: value.TASK_ID,
-                requestStatus: value.REQUEST_STATUS
-            })
+            if (value) {
+                this.setState({
+                    taskID: value.TASK_ID,
+                    requestStatus: value.REQUEST_STATUS
+                })
+            }
         });
      }
 
