@@ -112,7 +112,7 @@ class SuggestedTasksCardView extends Component {
 
         // map a random set of 3? and then when u click 3 more you can just call this again. 
         let requestItems = mappedKeys.map((requestObj) => {
-            if(requestObj.REQUEST_ZIP_CODE == this.props.userZip) {
+            if(requestObj.REQUEST_ZIP_CODE == this.props.userZip && requestObj.TASK_ID == '') {
                 let userId = requestObj.REQUESTER_ID;
                 var userFullName;
 
