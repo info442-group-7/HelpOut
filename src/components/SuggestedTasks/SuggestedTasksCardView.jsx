@@ -181,7 +181,7 @@ class SuggestedTask extends Component {
             REQUEST_ID: this.props.task.REQUEST_ID,
             TASK_ID: key,
             TASK_STATUS: "incomplete",
-            USER_ID: this.props.userID
+            USER_ID: this.props.currentUserID
         })
 
         firebase.database().ref('CLAIMED_TASK').child(key)
