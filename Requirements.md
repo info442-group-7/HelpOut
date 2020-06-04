@@ -71,8 +71,7 @@ a) At the very top of the page is a horizontal navigation bar, henceforth referr
   - At the very left of the navbar will be the HelpOut logo. Clicking on this will take the user to the Homepage from any other screen on the app.
   - To the right of the logo on the navbar will be a clickable menu item called ‘Tasks’. Clicking on this will take the user to Screen 4. This menu item has a drop down with two options, 'My claimed tasks' and 'Find new tasks'.
   - To the right of the ‘Tasks’ menu item on the navbar will be another clickable menu item called ‘Requests’. Clicking on this will take the user to Screen 7. This menu item has a drop down with two options, 'My requests' and 'Create new request'.
-  - To the extreme right side of the navbar will the text “Welcome back, [user’s first name]. This menu item has a drop down with the option to log out of the system. 
-    - The first name will be taken from the USER_FNAME column under the USER table in the database. 
+  - To the extreme right side of the navbar will the text “Welcome back!". This menu item has a drop down with the option to log out of the system. 
 
 b) Directly below the navbar, in an H2 heading, will be a greeting. The format will be “Hello [user’s first name]. 
 
@@ -155,7 +154,7 @@ c) Above the list of cards will be a button that reads "Create Request",  naviga
 #### Screen 8: Account Options Drop-Down
 This page shows the options available when the user clicks on their name on the top right corner of the navigation bar.
 
-a) When the user hovers their mouse over (or clicks on) the ‘Welcome back, [user name]’ field, a box should pop-up underneath the text, beneath the navbar. 
+a) When the user hovers their mouse over (or clicks on) the ‘Welcome back’ field, a box should pop-up underneath the text, beneath the navbar. 
 
 b) There must be one button in the drop-down box:
 
