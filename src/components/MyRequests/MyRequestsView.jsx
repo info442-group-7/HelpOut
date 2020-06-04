@@ -90,7 +90,7 @@ class MyRequestsView extends React.Component {
           <NavLink to="/CreateRequest">
             <Button type="primary" style={{
               marginLeft: '2vmin',
-              fontSize: '3vmin', marginTop: '0vmin', marginBottom: '3vmin', marginLeft: '5vmin', paddingBottom: '6vmin', paddingTop: '1', size: 'large', paddingLeft: '6vmin', paddingRight: '8vmin', textAlign: 'center'
+              fontSize: '3vmin', marginTop: '0vmin', marginBottom: '3vmin', marginLeft: '3.7vmin', paddingBottom: '6vmin', paddingTop: '1', size: 'large', paddingLeft: '6vmin', paddingRight: '8vmin', textAlign: 'center'
             }}>Create Request </Button>
             </NavLink>
           </div>
