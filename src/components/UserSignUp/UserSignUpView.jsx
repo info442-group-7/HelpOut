@@ -227,7 +227,8 @@ const UserSignUpView = () => {
           rules={[
             {
               required: true,
-              message: 'Please input your password!',
+              // message: 'Please input your password!',
+              min: 6
             },
           ]}
           hasFeedback
