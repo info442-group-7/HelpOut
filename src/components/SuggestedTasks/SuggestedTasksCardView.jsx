@@ -122,6 +122,7 @@ class SuggestedTasksCardView extends Component {
                     console.log('name is ' + userFullName)
                     
                 });
+                console.log(this.state.currentUserID);
 
                 return <div className="col"><SuggestedTask userID= {this.state.currentUserID} name={userFullName} task={requestObj} /></div>
             } else {
@@ -164,7 +165,7 @@ class SuggestedTask extends Component {
 
     // on click, do something about REQUEST.REQUEST_STATUS 
     onClick() {
-        console.log('clikced done!!');
+        console.log('clicked claim: claiming user id is: ' + this.props.userID);
         this.setState({
             clicked: false
         });
@@ -175,13 +176,14 @@ class SuggestedTask extends Component {
         let taskPushRef = this.tasksRef.push()
         let key = taskPushRef.key;
 
+        
         taskPushRef.set({
             CLAIMED_TIME: new Date().toLocaleString(),
             REQUESTER_ID: this.props.task.REQUESTER_ID,
             REQUEST_ID: this.props.task.REQUEST_ID,
             TASK_ID: key,
             TASK_STATUS: "incomplete",
-            USER_ID: this.props.currentUserID
+            USER_ID: this.props.userID
         })
 
         firebase.database().ref('CLAIMED_TASK').child(key)
@@ -190,7 +192,7 @@ class SuggestedTask extends Component {
         //mark request as claimed, set task id
         this.requestsRef = firebase.database().ref('REQUEST');
         firebase.database().ref('REQUEST').child('/' + this.props.task.REQUEST_ID + '/')
-        .update({REQUEST_STATUS: 'claimed', TASK_ID: key }); 
+        .update({REQUEST_STATUS: 'claimed', TASK_ID: key, USER_ID: this.props.userID }); 
     
      }
 
