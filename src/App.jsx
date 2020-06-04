@@ -107,7 +107,7 @@ const App = () => {
             </Dropdown>
             </Menu.Item>
             <Menu.Item key="4">Additional Resources
-                <Link to="/AdditionalResourcesView" /></Menu.Item>
+                <Link to="/AdditionalResources" /></Menu.Item>
             <Menu.Item key="5" style={{ float: "right" }}><Dropdown overlay={menuWelcome}>
               <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
                 Welcome Back!     <DownOutlined />

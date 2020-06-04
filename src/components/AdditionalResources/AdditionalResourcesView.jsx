@@ -7,31 +7,33 @@ const AdditionalResourcesView = (props) => {
     return (
         <div className="additionalResourcesBody">
             <div className="heading">
-                <h1 className="additionalResourcesHeader">Additional Resources</h1>
+                <h1 className="additionalResourcesHeader" style={{fontSize: 40, fontWeight: 700}}>Additional Resources</h1>
                 <div id="additionalResources-descrip">
                     <p>If you're seeking additional information about the crisis, please navigate to the external sources below.</p>
                 </div>
             </div>
         
         <div className="options">
-            <div className="buttons" style={{ display: "flex"}}>
+            <div style={{display:'flex', flexWrap:"wrap"}}>
                 <Button className="bar-button" type="primary" style={{
                     fontSize: '3vmin',
                     marginTop: '1vmin',
+                    marginRight: '60%',
                     paddingBottom: '6vmin',
                     paddingTop: '2vmin',
-                    width: '110%',
+                    width: '400px',
                     textAlign: 'center',
                     borderRadius: '5px',
-                    fontWeight: 'bolder'
+                    fontWeight: 'bolder',
                 }} a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019">WHO Resources 
                 </Button>
                 <Button className="bar-button" type="primary" style={{
                     fontSize: '3vmin',
                     marginTop: '1vmin',
+                    marginRight: '60%',
                     paddingBottom: '6vmin',
                     paddingTop: '2vmin',
-                    width: '110%',
+                    width: '400px',
                     textAlign: 'center',
                     borderRadius: '5px',
                     fontWeight: 'bolder'
@@ -40,9 +42,10 @@ const AdditionalResourcesView = (props) => {
                 <Button className="bar-button" type="primary" style={{
                     fontSize: '3vmin',
                     marginTop: '1vmin',
+                    marginRight: '60%',
                     paddingBottom: '6vmin',
                     paddingTop: '2vmin',
-                    width: '110%',
+                    width: '400px',
                     textAlign: 'center',
                     borderRadius: '5px',
                     fontWeight: 'bolder'
@@ -51,9 +54,10 @@ const AdditionalResourcesView = (props) => {
                 <Button className="bar-button" type="primary" style={{
                     fontSize: '3vmin',
                     marginTop: '1vmin',
+                    marginRight: '60%',
                     paddingBottom: '6vmin',
                     paddingTop: '2vmin',
-                    width: '110%',
+                    width: '400px',
                     textAlign: 'center',
                     borderRadius: '5px',
                     fontWeight: 'bolder'

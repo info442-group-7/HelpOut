@@ -190,7 +190,7 @@ class UserRequestCard extends Component {
             return (
              
                 <div style={{ marginRight: '50%' }}>
-                <Card className="cardStyle" style={{ width: '350px', height: "350px", boxShadow: "0 8px 6px -6px #aaaaaa", lineHeight: "24px", display: 'flex', flexDirection: 'column' }}>
+                <Card className="cardStyle" style={{ width: '350px', boxShadow: "0 8px 6px -6px #aaaaaa", lineHeight: "24px", display: 'flex', flexDirection: 'column' }}>
                     <h5 className="cardTitle">{request.REQUEST_TITLE}</h5>
                     <hr className="cardLineBreak"></hr>
                     <div className="cardDesDiv">
