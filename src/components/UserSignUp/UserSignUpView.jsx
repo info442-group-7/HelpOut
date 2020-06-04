@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import './UserSignUpView.css';
 
 
+
 const { Option } = Select;
 
 const UserSignUpView = () => {
@@ -26,6 +27,7 @@ const UserSignUpView = () => {
       USER_ZIP_CODE: values.zipcode,
       // profile_picture : imageUrl
     });
+    history.push("/HomePageView");
     // console.log(newUserSnapshot.val())
     // success();
 
