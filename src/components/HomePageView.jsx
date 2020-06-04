@@ -166,7 +166,7 @@ class HomePage extends Component {
                                     textAlign: 'center',
                                     borderRadius: '5px',
                                     fontWeight: 'bolder'
-                                }}>Resources</Button>
+                                }}href="CreateRequest">Create new request</Button>
                             </div>
                             <Button className="bar-button" type="primary" style={{
                                 marginLeft: '3vmin',
@@ -179,7 +179,7 @@ class HomePage extends Component {
                                 paddingLeft: '2.5vmin',
                                 paddingRight: '2.5vmin',
                                 textAlign: 'center'
-                            }}>My requests </Button>
+                            }}href="AdditionalResourcesView">Additional Resources </Button>
                         </div>
 
                     </div>
