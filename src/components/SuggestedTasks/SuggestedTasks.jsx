@@ -80,22 +80,21 @@ class SuggestedTasksView extends React.Component {
     return (
       <div style={{ }} >
         <div className="headerDiv"><h1 className="cardHeader">Tasks in My Area ({this.state.userZip})</h1>
-        <div 
-          id="zipcode-search">
-          <Search
-            style={{float:'center'}}
-            placeholder={this.state.userZip}
-            enterButton="Search"
-            size="large"
-            onSearch={value => this.updateZip(value)}
-          />
+        <p className="disclaimer">Below are requests in your zipcode! If there are no cards shown, all requests in your area have been fulfilled. Try a different zip code to find new requests.</p>
+          <div 
+            id="zipcode-search">
+            <Search
+              style={{float:'center'}}
+              placeholder={this.state.userZip}
+              enterButton="Search"
+              size="large"
+              onSearch={value => this.updateZip(value)}
+            />
+          </div>
         </div>
-        
-        </div>
-
         
           {/* {this.state.total.map((value) => */}
-\                <SuggestedTasksCardView  userZip={this.state.userZip} currentUser={this.state.currentUser} />
+                <SuggestedTasksCardView  userZip={this.state.userZip} currentUser={this.state.currentUser} />
           {/* )} */}
 
         {/* <form onSubmit={this.handleSubmit}>

@@ -42,7 +42,10 @@ class ClaimedTasksView extends React.Component {
   render() {
     return (
       <div style={{  }} >
-        <div className="headerDiv"><h1 className="cardHeader">Claimed Tasks</h1></div>
+        <div className="headerDiv"><h1 className="cardHeader">Claimed Tasks</h1>
+        <p className="disclaimer">Below are your claimed tasks. If there are no tasks below, it means you have not yet claimed a request. Click on the button below to find new tasks!</p>
+        
+        </div>
                 <ClaimedTasksCardView />
         <div style={{ display: 'flex' }}>
             <Button type="primary" style={{

@@ -32,12 +32,12 @@ class SuggestedTasksCardView extends Component {
             requester: [],
             currentUserID: '',
             userZip: ''
+
         };
         this.onClick = this.onClick.bind(this);
         this.handleClick.bind(this);
-
-
     }
+    
 
     componentDidMount() {
 
@@ -110,16 +110,15 @@ class SuggestedTasksCardView extends Component {
             return requesterObj;
         });
 
-        // map a random set of 3? and then when u click 3 more you can just call this again. 
         let requestItems = mappedKeys.map((requestObj) => {
             if(requestObj.REQUEST_ZIP_CODE == this.props.userZip && requestObj.TASK_ID == '') {
+                
                 let userId = requestObj.REQUESTER_ID;
                 var userFullName;
 
                 firebase.database().ref("USER").child(userId).once('value', function(snapshot){
                     let value = snapshot.val();
                     userFullName = value.USER_FNAME + ' ' + value.USER_LNAME;
-                    console.log('name is ' + userFullName)
                     
                 });
                 console.log(this.state.currentUserID);
@@ -129,6 +128,8 @@ class SuggestedTasksCardView extends Component {
                 return; //show no requests if none are in?
             }
         });
+
+    
 
         return (
             <div className='flex-grid'>
@@ -222,7 +223,6 @@ class SuggestedTask extends Component {
 
         let task = this.props.task;
 
-        
 
 
         // need to do something about user id / requester id. get it and cross reference their info from REQUESTER and USER
@@ -234,7 +234,7 @@ class SuggestedTask extends Component {
                 <div className="cardDesDiv">
                     <p className="cardDescription">{task.REQUEST_DESCRIPTION} </p>
                 </div>
-        <p className="cardRequester">{this.props.name} {}</p>
+                <p className="cardRequester">{this.props.name} </p>
                 <p className="cardRequested">Created on {task.REQUEST_DATE}</p>
                 <div className="suggestedTaskButton">
                     <div onClick={this.handleClick.bind(this)}> {this.state.succeed ? succeed : notsucceed} </div>

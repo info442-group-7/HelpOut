@@ -84,6 +84,7 @@ class MyRequestsView extends React.Component {
       <div>
         <div className="headerDiv">
           <h1 className="cardHeader">My Requests</h1>
+          <p className="disclaimer">Below are the requests you have made. If there are no request cards displayed, then you have not yet made a request. Click on the button below to create your request!</p>
           <div style={{ display: 'flex' }}>
             
           <NavLink to="/CreateRequest">
