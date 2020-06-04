@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import MyRequestsCardView from "./MyRequestsCardView";
 import MyOldRequests from './MyOldRequests'
-import { Row, Col } from 'antd';
-import { Button } from 'antd';
+import { Button, Modal} from 'antd';
+import { useHistory, NavLink } from 'react-router-dom';
+
+
 
 class MyRequestsView extends React.Component {
 
@@ -11,6 +13,7 @@ class MyRequestsView extends React.Component {
     this.state = { dog: "fido", counter: 5, total: [0, 1, 2], old: false };
     this.onClick = this.onClick.bind(this);
     this.handleClick.bind(this);
+    this.doneRedirect = this.doneRedirect.bind(this);
   }
   handleClick() {
     this.setState(previousState => {
@@ -41,6 +44,26 @@ class MyRequestsView extends React.Component {
     });
   }
 
+    // modal informing user that their submission was successful, onclick will redirect them
+    success() {
+
+      Modal.success({
+        okText:"Done",
+        title: 'You have successfully created an account!',
+        // content: 'View your requests to see your new entry.',
+        onOk() {
+          this.doneRedirect();
+        }
+      });
+    }
+
+    // redirects/reroutes to request page
+    doneRedirect () {
+      let history = useHistory();
+      history.push("/HomePageView");
+    };
+
+
   render() {
     const succeed = (
       this.state.total.map((value) =>
@@ -49,6 +72,7 @@ class MyRequestsView extends React.Component {
     )
     const notsucceed = (
       <div>
+
         <Button onClick={this.handleClick.bind(this)} shape="round" type="primary" ghost style={{
           marginLeft: '5vmin', alignItems: "center",
           marginTop: '16vmin', paddingTop: '1vmin', paddingBottom: "3.2vmin"
@@ -60,19 +84,23 @@ class MyRequestsView extends React.Component {
       <div>
         <div className="headerDiv">
           <h1 className="cardHeader">My Requests</h1>
+          <div style={{ display: 'flex' }}>
+            
+          <NavLink to="/CreateRequest">
+            <Button type="primary" style={{
+              marginLeft: '2vmin',
+              fontSize: '3vmin', marginTop: '4vmin', paddingBottom: '6vmin', paddingTop: '1', size: 'large', paddingLeft: '6vmin', paddingRight: '8vmin', textAlign: 'center'
+            }}>Create Request </Button>
+            </NavLink>
+          </div>
         </div>
         <div style={{ }}>
         
                 <MyRequestsCardView />
           
-            {this.state.succeed ? succeed : notsucceed}
+            {/* {this.state.succeed ? succeed : notsucceed} */}
      
-          <div style={{ display: 'flex' }}>
-            <Button type="primary" style={{
-              marginLeft: '2vmin',
-              fontSize: '3vmin', marginTop: '4vmin', paddingBottom: '6vmin', paddingTop: '1', size: 'large', paddingLeft: '6vmin', paddingRight: '8vmin', textAlign: 'center'
-            }}href="CreateRequest">Create Request </Button>
-          </div>
+
         </div>
       </div>
     );

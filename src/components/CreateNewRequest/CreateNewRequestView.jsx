@@ -113,8 +113,8 @@ const CreateNewRequestView = () => {
       REQUESTER_ID: userID, 
       REQUEST_DATE: new Date().toLocaleString(),
       REQUEST_DESCRIPTION: values.details,
-      REQUEST_STATUS: "incomplete", // to start
-      REQUEST_TIME: 'mock - add date function here',
+      REQUEST_STATUS: "open", // to start
+      // REQUEST_TIME: 'mock - add date function here',
       REQUEST_TITLE: values.title,
       REQUEST_ZIP_CODE: values.zip,
       USER_ID: '', //ONCE SOMEONe accepts, this is updated

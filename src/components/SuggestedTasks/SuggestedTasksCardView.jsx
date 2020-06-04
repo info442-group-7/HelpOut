@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
-import { PlusCircleTwoTone } from '@ant-design/icons';
+import { PlusCircleTwoTone, VerticalRightOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import '../../App.css'
 import { Card } from 'antd';
@@ -30,7 +30,7 @@ class SuggestedTasksCardView extends Component {
             clicked: true,
             requests: [],
             requester: [],
-            currentUser: null,
+            currentUserID: '',
             userZip: ''
         };
         this.onClick = this.onClick.bind(this);
@@ -40,6 +40,23 @@ class SuggestedTasksCardView extends Component {
     }
 
     componentDidMount() {
+
+        firebase.auth().onAuthStateChanged(user => {
+
+            var id;
+      
+            if (user) {
+                console.log('This is the user: ', user.uid)
+                id = user.uid;
+                this.setState({currentUserID: id}); //get user id
+      
+            } else {
+              // No user is signed in.
+              console.log("user is not logged in!")
+              this.setState({currentUserID: ''});
+            }
+        });
+      
 
         this.requestsRef = firebase.database().ref('REQUEST');
         this.requestsRef.on('value', (snapshot) => {
@@ -95,8 +112,18 @@ class SuggestedTasksCardView extends Component {
 
         // map a random set of 3? and then when u click 3 more you can just call this again. 
         let requestItems = mappedKeys.map((requestObj) => {
-            if(requestObj.REQUEST_ZIP_CODE == this.props.userZip) {
-                return <div className="col"><SuggestedTask task={requestObj} /></div>
+            if(requestObj.REQUEST_ZIP_CODE == this.props.userZip && requestObj.TASK_ID == '') {
+                let userId = requestObj.REQUESTER_ID;
+                var userFullName;
+
+                firebase.database().ref("USER").child(userId).once('value', function(snapshot){
+                    let value = snapshot.val();
+                    userFullName = value.USER_FNAME + ' ' + value.USER_LNAME;
+                    console.log('name is ' + userFullName)
+                    
+                });
+
+                return <div className="col"><SuggestedTask userID= {this.state.currentUserID} name={userFullName} task={requestObj} /></div>
             } else {
                 return; //show no requests if none are in?
             }
@@ -118,15 +145,18 @@ class SuggestedTask extends Component {
         super(props);
         this.state = { 
             clicked: true,
-            requests: []
+            requests: [],
+
         };
         this.onClick = this.onClick.bind(this);
         this.handleClick.bind(this);
     }
 
+    //claim task 
     handleClick() {
+        console.log('clicky in handleclick')
         this.setState(previousState => {
-            return {
+           return {
                 succeed: !previousState.succeed
             };
         });
@@ -138,6 +168,29 @@ class SuggestedTask extends Component {
         this.setState({
             clicked: false
         });
+
+        //make new task
+        this.tasksRef = firebase.database().ref('CLAIMED_TASK');
+
+        let taskPushRef = this.tasksRef.push()
+        let key = taskPushRef.key;
+
+        taskPushRef.set({
+            CLAIMED_TIME: new Date().toLocaleString(),
+            REQUESTER_ID: this.props.task.REQUESTER_ID,
+            REQUEST_ID: this.props.task.REQUEST_ID,
+            TASK_ID: key,
+            TASK_STATUS: "incomplete",
+            USER_ID: this.props.userID
+        })
+
+        firebase.database().ref('CLAIMED_TASK').child(key)
+        .update({TASK_STATUS: 'incomplete', TASK_ID: key });
+
+        //mark request as claimed, set task id
+        this.requestsRef = firebase.database().ref('REQUEST');
+        firebase.database().ref('REQUEST').child('/' + this.props.task.REQUEST_ID + '/')
+        .update({REQUEST_STATUS: 'claimed', TASK_ID: key }); 
     
      }
 
@@ -154,10 +207,11 @@ class SuggestedTask extends Component {
         const succeed = (
             <div className='claimedText'>Claimed!</div>
         )
+
         const notsucceed = (
             <div>
                 <Tooltip placement="bottom" title={accept}>
-                    <Button>
+                    <Button onClick={this.onClick}>
                         <PlusCircleTwoTone style={{ fontSize: '40px' }} />
                     </Button>
                 </Tooltip>
@@ -178,7 +232,7 @@ class SuggestedTask extends Component {
                 <div className="cardDesDiv">
                     <p className="cardDescription">{task.REQUEST_DESCRIPTION} </p>
                 </div>
-                <p className="cardRequester">Requester's name</p>
+        <p className="cardRequester">{this.props.name} {}</p>
                 <p className="cardRequested">Created on {task.REQUEST_DATE}</p>
                 <div className="suggestedTaskButton">
                     <div onClick={this.handleClick.bind(this)}> {this.state.succeed ? succeed : notsucceed} </div>
