@@ -161,7 +161,7 @@ class HomePage extends Component {
                                     fontSize: '3vmin',
                                     marginTop: '1vmin',
                                     paddingBottom: '6vmin',
-                                    paddingTop: '1vmin',
+                                    paddingTop: '2vmin',
                                     width: '110%',
                                     textAlign: 'center',
                                     borderRadius: '5px',
@@ -174,11 +174,14 @@ class HomePage extends Component {
                                 borderColor: 'gray',
                                 backgroundColor: 'gray',
                                 marginTop: '1vmin',
+                                marginLeft: '4vmin',
                                 paddingBottom: '6vmin',
-                                paddingTop: '1vmin',
+                                paddingTop: '2vmin',
                                 paddingLeft: '2.5vmin',
                                 paddingRight: '2.5vmin',
-                                textAlign: 'center'
+                                textAlign: 'center',
+                                borderRadius: '5px',
+                                fontWeight: 'bolder'
                             }}href="AdditionalResources">Additional Resources </Button>
                         </div>
 
