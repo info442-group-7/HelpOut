@@ -47,7 +47,7 @@ class ClaimedTasksView extends React.Component {
         <div style={{ display: 'flex' }}>
             <Button type="primary" style={{
               marginLeft: '12vw',
-              fontSize: '30px', marginTop: '50px', paddingBottom: '50px', paddingTop: '18px', size: 'large', paddingLeft: '30px', paddingRight: '30px', textAlign: 'center'
+              fontSize: '30px', marginTop: '50px', paddingBottom: '50px', paddingTop: '18px', size: 'large', paddingLeft: '30px', paddingRight: '30px', textAlign: 'center', borderRadius: '5px', fontWeight: 'bolder'
             }}a rel="noopener noreferrer" href="/SuggestedTasks">Find new tasks </Button></div>
         </div>
      
