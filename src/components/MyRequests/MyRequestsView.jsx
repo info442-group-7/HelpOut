@@ -44,6 +44,25 @@ class MyRequestsView extends React.Component {
     });
   }
 
+    // modal informing user that their submission was successful, onclick will redirect them
+    success() {
+
+      Modal.success({
+        okText:"Done",
+        title: 'You have successfully created an account!',
+        // content: 'View your requests to see your new entry.',
+        onOk() {
+          doneRedirect();
+        }
+      });
+    }
+
+    // redirects/reroutes to request page
+    doneRedirect () {
+      let history = useHistory();
+      history.push("/HomePageView");
+    };
+
 
   render() {
     const succeed = (
