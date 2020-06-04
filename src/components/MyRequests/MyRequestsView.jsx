@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import MyRequestsCardView from "./MyRequestsCardView";
 import MyOldRequests from './MyOldRequests'
-import { Row, Col } from 'antd';
-import { Button } from 'antd';
+import { Button, Modal} from 'antd';
 import { useHistory, NavLink } from 'react-router-dom';
 
 
@@ -14,6 +13,7 @@ class MyRequestsView extends React.Component {
     this.state = { dog: "fido", counter: 5, total: [0, 1, 2], old: false };
     this.onClick = this.onClick.bind(this);
     this.handleClick.bind(this);
+    this.doneRedirect = this.doneRedirect.bind(this);
   }
   handleClick() {
     this.setState(previousState => {
@@ -52,7 +52,7 @@ class MyRequestsView extends React.Component {
         title: 'You have successfully created an account!',
         // content: 'View your requests to see your new entry.',
         onOk() {
-          doneRedirect();
+          this.doneRedirect();
         }
       });
     }
