@@ -179,7 +179,7 @@ class HomePage extends Component {
                                 paddingLeft: '2.5vmin',
                                 paddingRight: '2.5vmin',
                                 textAlign: 'center'
-                            }}href="AdditionalResourcesView">Additional Resources </Button>
+                            }}href="AdditionalResources">Additional Resources </Button>
                         </div>
 
                     </div>
