@@ -22,11 +22,11 @@ class SuggestedTasksView extends React.Component {
     this.updateZip = this.updateZip.bind(this);
   }
 
-  scrollToBottom = () => {
-    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
-  }
+  // scrollToBottom = () => {
+  //   this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  // }
   componentDidMount() {
-    this.scrollToBottom();
+    // this.scrollToBottom();
 
     firebase.auth().onAuthStateChanged(user => {
       var givenUserID;
@@ -51,7 +51,7 @@ class SuggestedTasksView extends React.Component {
   });
   }
   componentDidUpdate() {
-    this.scrollToBottom();
+    // this.scrollToBottom();
   }
 
   onClick() {
@@ -85,7 +85,7 @@ class SuggestedTasksView extends React.Component {
             id="zipcode-search">
             <Search
               style={{float:'center'}}
-              placeholder={this.state.userZip}
+              placeholder='98195'
               enterButton="Search"
               size="large"
               onSearch={value => this.updateZip(value)}

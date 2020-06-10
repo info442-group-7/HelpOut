@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import './UserSignUpView.css';
 
 
+
 const { Option } = Select;
 
 const UserSignUpView = () => {
@@ -26,6 +27,7 @@ const UserSignUpView = () => {
       USER_ZIP_CODE: values.zipcode,
       // profile_picture : imageUrl
     });
+    history.push("/HomePageView");
     // console.log(newUserSnapshot.val())
     // success();
 
@@ -228,7 +230,8 @@ const UserSignUpView = () => {
             { min: 6, message: 'Password must be minimum 5 characters.' },
             {
               required: true,
-              message: 'Please input your password!',
+              // message: 'Please input your password!',
+              min: 6
             },
           ]}
           hasFeedback
