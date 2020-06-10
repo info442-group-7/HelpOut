@@ -111,7 +111,7 @@ class SuggestedTasksCardView extends Component {
         });
 
         let requestItems = mappedKeys.map((requestObj) => {
-            if(requestObj.REQUEST_ZIP_CODE == this.props.userZip && requestObj.TASK_ID == '') {
+            if(requestObj.REQUEST_ZIP_CODE == this.props.userZip && requestObj.TASK_ID == '' && requestObj.REQUESTER_ID != this.state.currentUserID) {
                 
                 let userId = requestObj.REQUESTER_ID;
                 var userFullName;
