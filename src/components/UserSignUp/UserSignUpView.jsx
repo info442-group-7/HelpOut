@@ -225,6 +225,7 @@ const UserSignUpView = () => {
           name="password"
           label="Password"
           rules={[
+            { min: 6, message: 'Password must be minimum 5 characters.' },
             {
               required: true,
               message: 'Please input your password!',
@@ -245,6 +246,7 @@ const UserSignUpView = () => {
               required: true,
               message: 'Please confirm your password!',
             },
+            { min: 6, message: 'Password must be minimum 5 characters.' },
             ({ getFieldValue }) => ({
               validator(rule, value) {
                 if (!value || getFieldValue('password') === value) {

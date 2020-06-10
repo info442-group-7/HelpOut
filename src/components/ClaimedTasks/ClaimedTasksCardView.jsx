@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import { Card } from 'antd';
 import '../../App.css'
-import { InfoCircleTwoTone, EditTwoTone, CheckCircleTwoTone, CloseCircleTwoTone } from '@ant-design/icons';
+import { InfoCircleTwoTone, EditTwoTone, CheckCircleTwoTone, ArrowLeftOutlined, CloseCircleTwoTone } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import firebase from 'firebase/app';
 import 'firebase/database';
 
+
 const abandon = <span>Give up...</span>;
 const complete = <span>Done!</span>;
 const more = <span>More...</span>;
+const back = <span>Back</span>;
 
 class ClaimedTasksCardView extends Component {
 
@@ -139,10 +141,13 @@ class ClaimedTasksCardView extends Component {
 class ClaimedTaskView extends Component {
     constructor(props) {
         super(props);
-        this.state = { clicked: true, taskid: '', task: this.props.task };
+        this.state = { clicked: true, taskid: '', task: this.props.task, succeed: null };
         this.onClick = this.onClick.bind(this);
         this.handleClick.bind(this);
         this.abandonClick = this.abandonClick.bind(this)
+        this.moreClick = this.moreClick.bind(this)
+        this.backClick = this.backClick.bind(this)
+
     }
     handleClick() {
         this.setState(previousState => {
@@ -150,6 +155,20 @@ class ClaimedTaskView extends Component {
                 succeed: !previousState.succeed
             };
         });
+    }
+    moreClick() {
+        console.log("succeed")
+        this.setState({
+                succeed: "true",
+        }
+        );
+    }
+    backClick() {
+        console.log("succeed")
+        this.setState({
+                succeed: null,
+        }
+        );
     }
     onClick() {
         this.setState({
@@ -196,18 +215,36 @@ class ClaimedTaskView extends Component {
     const succeed = (
         <div style={{ display: 'flex', flexDirection: 'column' }}>Phone Number: { requester.REQUESTER_PHONE_NUMBER} <br /> Address:  { requester.REQUESTER_STREET_ADDRESS}<br></br></div>
     )
-    const notsucceed = (
+    const More = () => (
         <div>
             <Tooltip placement="bottom" title={more}>
-                <Button>
+                <Button onClick={this.moreClick}>
                     <InfoCircleTwoTone style={{ fontSize: '40px' }} />
                 </Button>
             </Tooltip>
+          
+        </div>
+    )
+    const Complete = () => (
+        <div>
             <Tooltip placement="bottom" title={complete}>
                 <Button onClick={this.onClick}>
                     <CheckCircleTwoTone twoToneColor="#52c41a" style={{ fontSize: '40px' }} />
                 </Button>
             </Tooltip>
+        </div>
+    )
+    const MoreInfo = () => (
+        <div style={{ display: 'flex', justifyContent: 'spaceBetween', flexDirection: 'row' }}>
+            
+            <Tooltip placement="bottom" title={back}>
+                <Button onClick={this.backClick} style={{marginRight:"2%"}}>
+                    <ArrowLeftOutlined twoToneColor="#52c41a" style={{ fontSize: '40px' }} />
+                </Button>
+            </Tooltip>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>Phone Number: { requester.REQUESTER_PHONE_NUMBER} <br /> Address:  { requester.REQUESTER_STREET_ADDRESS}<br></br></div>
+
+
         </div>
     )
 
@@ -226,7 +263,11 @@ class ClaimedTaskView extends Component {
                     <p className="cardRequested">Accepted on {task.CLAIMED_TIME}</p>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
                         <div> {this.state.succeed ? null : <Results />}</div>
-                        <div onClick={this.handleClick.bind(this)}> {this.state.succeed ? succeed : notsucceed} </div>
+                        <div> {this.state.succeed ? null : <More />}</div>
+                        <div> {this.state.succeed ? null : <Complete />}</div>
+                        <div> {this.state.succeed ?  <MoreInfo />: null}</div>
+
+                        
                     </div>
                 </Card>
             </div>
