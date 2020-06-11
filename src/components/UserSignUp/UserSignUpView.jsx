@@ -138,7 +138,7 @@ const UserSignUpView = () => {
             <Form.Item
               name={'street'}
               noStyle
-              rules={[{ required: true, message: 'Your full address is required.' }]}
+              rules={[{ required: true, message: 'Your street address is required.' }]}
             >
               <Input style={{  }} placeholder="Street address"/>
             </Form.Item>
@@ -146,24 +146,24 @@ const UserSignUpView = () => {
             <Form.Item
               name={'city'}
               noStyle
-              rules={[{ required: true, message: 'Your full address is required.' }]}
+              rules={[{ required: true, message: 'Your city is required.' }]}
             >
               <Input style={{ width: '50%' }} placeholder="City" />
             </Form.Item>
             <Form.Item
               name={'zipcode'}
               noStyle
-              rules={[{ required: true, message: 'Your full address is required.' }]}
+              rules={[{ required: true, message: 'Your zipcode is required.' }]}
             >
-              <Input style={{ width: '15%' }} placeholder="Zipcode" maxLength='5'/>
+              <Input style={{ width: '15%' }} type='number' max={99999}/>
             </Form.Item>
 
             <Form.Item
               name={'state'}
               noStyle
-              rules={[{ required: true, message: 'Your full address is required.' }]}
+              rules={[{ required: true, message: 'Your state is required.' }]}
             >
-              <Select placeholder="State" style={{ width: '15%'}}name="state" id="state">
+              <Select placeholder="State" style={{ width: '30%'}}name="state" id="state">
                 <Option value="" selected="selected">Select a State</Option>
                 <Option value="AL">Alabama</Option>
                 <Option value="AK">Alaska</Option>
