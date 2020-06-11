@@ -253,7 +253,7 @@ const UserSignUpView = () => {
             // { min: 6, message: 'Password must be minimum 5 characters.' },
             ({ getFieldValue }) => ({
               validator(rule, value) {
-                if (!value || getFieldValue('password') === value) {
+                if (!value || getFieldValue('Password') === value) {
                   return Promise.resolve();
                 }
                 return Promise.reject('The two passwords that you entered do not match!');
