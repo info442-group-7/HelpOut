@@ -80,7 +80,7 @@ const UserSignUpView = () => {
       <p id="signup-return"><a onClick={returnRedirect}>Return to login</a></p>
       <Form name="complex-form" onFinish={onFinish} labelCol={{ span: 8 }} wrapperCol={{ span: 16 }}>
 
-        <Form.Item label="Email">
+        <Form.Item label="Email" name={'email'} rules={[{ required: true }]}>
           <Form.Item
             name="email"
             noStyle
@@ -90,7 +90,7 @@ const UserSignUpView = () => {
           </Form.Item>
         </Form.Item>
         
-        <Form.Item label="Name">
+        <Form.Item label="Name" name={'firstname'} rules={[{ required: true }]}>
           <Form.Item
             name="firstname"
             noStyle
@@ -112,7 +112,7 @@ const UserSignUpView = () => {
             </a>
           </Tooltip> */}
         </Form.Item>
-        <Form.Item label="Phone number">
+        <Form.Item label="Phone number" name={'phonenum'} rules={[{ required: true }]}>
           <Form.Item
             name="phonenum"
 
@@ -122,7 +122,7 @@ const UserSignUpView = () => {
             <Input style={{ width: 160 }}  maxLength= '12' placeholder="206-123-4567" type="tel"/>
           </Form.Item>
         </Form.Item>
-        <Form.Item label="Date of birth">
+        <Form.Item label="Date of birth" name={'dob'} rules={[{ required: true }]}>
           <Form.Item
             name="dob"
 
@@ -133,7 +133,7 @@ const UserSignUpView = () => {
           </Form.Item>
         </Form.Item>
 
-        <Form.Item label="Address">
+        <Form.Item label="Address" name={'street'} rules={[{ required: true }]}>
           <Input.Group>
             <Form.Item
               name={'street'}
@@ -224,10 +224,11 @@ const UserSignUpView = () => {
 
 
         <Form.Item
-          name="password"
+          name="Password"
           label="Password"
           rules={[
-            { min: 6, message: 'Password must be minimum 5 characters.' },
+    
+            // { min: 6, message: 'Password must be minimum 5 characters.' },
             {
               required: true,
               // message: 'Please input your password!',
@@ -249,7 +250,7 @@ const UserSignUpView = () => {
               required: true,
               message: 'Please confirm your password!',
             },
-            { min: 6, message: 'Password must be minimum 5 characters.' },
+            // { min: 6, message: 'Password must be minimum 5 characters.' },
             ({ getFieldValue }) => ({
               validator(rule, value) {
                 if (!value || getFieldValue('password') === value) {
