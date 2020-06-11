@@ -155,7 +155,7 @@ const CreateNewRequestView = () => {
         <Form.Item name={['title']} label="I need help with " rules={[{ required: true, message:'Your request title is required!' }]}>
           <Input style={{width: 500}}/>
         </Form.Item>
-        <Form.Item name={['details']} label="Could you give additional details?">
+        <Form.Item name={['details']} label="Could you give additional details?" rules={[{ required: true, message:'A description is required!'}]}>
           <Input.TextArea style={{width: 500}} />
         </Form.Item>
         {/* <Form.Item name={['user', 'age']} label="This task can be categorized as" rules={[{ type: 'number', min: 0, max: 99 }]}>
