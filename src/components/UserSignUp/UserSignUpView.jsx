@@ -243,7 +243,7 @@ const UserSignUpView = () => {
         <Form.Item
           name="confirm"
           label="Confirm Password"
-          dependencies={['password']}
+          dependencies={['Password']}
           hasFeedback
           rules={[
             {
