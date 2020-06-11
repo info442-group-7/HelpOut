@@ -11,7 +11,7 @@ const { Option } = Select;
 const UserSignUpView = () => {
   const onFinish = async (values) => {
     console.log('Received values of form: ', values);
-    const authUserResponse = await firebase.app().auth().createUserWithEmailAndPassword(values.email, values.password)
+    const authUserResponse = await firebase.app().auth().createUserWithEmailAndPassword(values.email, values.Password)
     console.log('authuserresponse is ' + authUserResponse)
     const newUserSnapshot = await firebase.database().ref('USER/' + authUserResponse.user.uid).set({  //reference to collection 
       // username: name,
@@ -155,7 +155,7 @@ const UserSignUpView = () => {
               noStyle
               rules={[{ required: true, message: 'Your zipcode is required.' }]}
             >
-              <Input style={{ width: '15%' }} type='number' max={99999}/>
+              <Input style={{ width: '15%' }} type='number' max={99999} placeholder="Zipcode"/>
             </Form.Item>
 
             <Form.Item
