@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Layout, Menu, Dropdown, Button } from 'antd';
@@ -23,23 +22,14 @@ import 'firebase/database';
 import { AuthProvider } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 import 'firebase/database'; 
-
-
-
-
-
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
-
 const handleSignOut = () => {
-    
   /* TODO: sign out user here */
   firebase.auth().signOut();
   console.log('logged out!')
+  console.log(firebase.auth().currentUser)
 }
-
-
-
 const menuTasks = (
   <Menu>
     <Menu.Item>
@@ -49,7 +39,6 @@ const menuTasks = (
     </Menu.Item>
   </Menu>
 );
-
 const menuRequests = (
   <Menu>
     <Menu.Item>
@@ -58,33 +47,54 @@ const menuRequests = (
     <Menu.Item>
     <a rel="noopener noreferrer" href="/CreateRequest"> Create a request </a>
     </Menu.Item>
-
   </Menu>
 );
-
 const menuWelcome = (
   <Menu>
     <Menu.Item>
     <Button onClick={handleSignOut}> Logout </Button>
-
     </Menu.Item>
   </Menu>
 )
-
 const App = () => {
+  // sets user variable given from firebase to the state 
+  const [user, setUser] = React.useState(null)
+  React.useEffect(() => {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        setUser(user)
+        console.log("user is signed in")
+        // User is signed in.
+      } else {
+        setUser(null)
+        console.log("user is logged out")
+        // No user is signed in.
+      }
+    });
+  }
+  )
   const isAuthenticated = () => {
     // Perform authentication logic once user handling on backend is set up
     return true
   }
-
   //A callback function for logging out the current user
   const handleSignOut = () => {
     // this.setState({errorMessage:null}); //clear any old errors
-
     /* TODO: sign out user here */
     firebase.auth().signOut();
   }
-
+  const logoutMenuItem = React.useMemo(() => {
+    return(
+      user && 
+      <Menu.Item key="5" style={{ float: "right" }}>
+        <Dropdown overlay={ menuWelcome }>
+          <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+            Welcome back!     <DownOutlined />
+          </a>
+        </Dropdown>
+    </Menu.Item>
+    )
+  }, [user, menuWelcome]);
   return (
     <Router>
       <Layout style={{ minHeight: '100vh' }}>
@@ -108,12 +118,7 @@ const App = () => {
             </Menu.Item>
             <Menu.Item key="4">Additional Resources
                 <Link to="/AdditionalResources" /></Menu.Item>
-            <Menu.Item key="5" style={{ float: "right" }}><Dropdown overlay={menuWelcome}>
-              <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                Welcome Back!     <DownOutlined />
-              </a>
-            </Dropdown>
-                </Menu.Item>
+            { logoutMenuItem }
           </Menu>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#F1F4F6', minHeight: 280 }}>
             <AuthProvider>
@@ -127,71 +132,10 @@ const App = () => {
             <Route path="/login" component={UserLoginView} />
             <Route path="/signup" component={SignUpView} />
             </AuthProvider>
-
           </Content>
         </Layout>
       </Layout>
     </Router>
   );
 }
-
-//            <Route path="/SuggestedTasks" component={SuggestedTasks} />
-
-//import { BrowserRouter, Route, Switch, Redirect, useHistory } from "react-router-dom";
-//import logo from './logo.svg';
-//import { Button } from 'antd';
-//import './App.css';
-//import DashboardLayout from './components/DashboardLayout/DashboardLayout';
-//import YourRequests from './components/YourRequests/YourRequests';
-
-//const App = () => {
-//const isAuthenticated = () => {
-// Perform authentication logic once user handling on backend is set up
-//return true
-// }
-//return (
-// <BrowserRouter>
-//   <Switch>
-//   <Route exact path="/home" component={DashboardLayout} />
-// <Route exact path="/yourrequests" component={YourRequests} />
-
-// </Switch>
-// </BrowserRouter>
-//)
-//}
-
-// const AuthedRoute = ({ component: Component, ...rest }) => (
-//   <Route
-//     {...rest}
-//     render={props => isAuthenticated()
-//       ? (
-//         <Component {...props} />
-//       ) : (
-//         <Redirect to={{ pathname: "/login" }} />
-//       )
-//     }
-//   >
-//   </Route>
-// );
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
 export default App;
